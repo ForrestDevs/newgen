@@ -143,7 +143,7 @@ export default function Component() {
               </Button>
             </form>
             <p className="text-xs text-gray-600 dark:text-gray-400">
-              We'll keep you updated on our launch and exclusive offers.
+              We&apos;ll keep you updated on our launch and exclusive offers.
             </p>
           </div>
         </div>
