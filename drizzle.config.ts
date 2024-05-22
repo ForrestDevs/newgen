@@ -1,11 +1,10 @@
-import type { Config } from "drizzle-kit";
 import { env } from "@/lib/env.mjs";
+import { defineConfig } from "drizzle-kit"
 
-export default {
-  schema: "./src/lib/db/schema",
-  out: "./src/lib/db/migrations",
-  driver: "d1",
-  dbCredentials: {
-    connectionString: env.DATABASE_URL.concat("?sslmode=require"),
-  }
-} satisfies Config;
+
+export default defineConfig({
+    dialect: "postgresql", // "postgresql" | "mysql"
+    dbCredentials: {
+        url: env.DATABASE_URL.concat("?sslmode=require")
+    }
+})

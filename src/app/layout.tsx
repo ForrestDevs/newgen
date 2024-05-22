@@ -7,6 +7,8 @@ import { cookies } from "next/headers";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react"
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -33,6 +35,7 @@ export default function RootLayout({
           </ThemeProvider>
         </TrpcProvider>
         <Toaster richColors />
+        <Analytics />
       </body>
     </html>
   );
