@@ -10,7 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { storeSubscriptionPlans } from "@/config/subscriptions";
-import { checkAuth, getUserAuth } from "@/lib/auth/utils";
+import { validateRequest } from "@/lib/auth";
+import { checkAuth } from "@/lib/auth/actions";
 import { getUserSubscriptionPlan } from "@/lib/stripe/subscription";
 import { CheckCircle2Icon } from "lucide-react";
 import Link from "next/link";
@@ -18,7 +19,7 @@ import { redirect } from "next/navigation";
 
 export default async function Billing() {
   await checkAuth();
-  const { session } = await getUserAuth();
+  const { session, user } = await validateRequest();
   const subscriptionPlan = await getUserSubscriptionPlan();
 
   if (!session) return redirect("/");
@@ -85,10 +86,10 @@ export default async function Billing() {
               </ul>
             </CardContent>
             <CardFooter className="flex items-end justify-center">
-              {session?.user.email ? (
+              {user.email ? (
                 <ManageUserSubscriptionButton
-                  userId={session.user.id}
-                  email={session.user.email || ""}
+                  userId={user.id}
+                  email={user.email || ""}
                   stripePriceId={plan.stripePriceId}
                   stripeCustomerId={subscriptionPlan?.stripeCustomerId}
                   isSubscribed={!!subscriptionPlan.isSubscribed}
