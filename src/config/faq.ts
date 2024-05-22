@@ -13,7 +13,7 @@ export const faq = [
         answer: "While the exact pricing is still being finalized, as a subscription based platform, we are aiming for a cost comparable to one practice skate per month. Our goal is to ensure that the value you receive from our platform far exceeds the price."
     },
     {
-        question: "What’s the format of learning?",
+        question: "What&apos;s the format of learning?",
         answer: "Our learning format includes knowledge delivery through many sources, practical application tools, and a calendar to schedule and track your progress, ensuring you can measure and see your development over time."
     },
     {

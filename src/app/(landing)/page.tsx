@@ -110,7 +110,7 @@ function Body() {
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 Gain access to my personal journaling journey that began at 13
                 years old diving into the questions, self-reflections, and
-                discoveries I've documented about my life and growth.
+                discoveries I&apos;ve documented about my life and growth.
               </p>
             </div>
             <div className="grid gap-1">
