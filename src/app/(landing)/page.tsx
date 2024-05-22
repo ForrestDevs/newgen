@@ -98,7 +98,7 @@ function Body() {
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-300">
                 Our calendar software helps you apply and monitor the progress
-                of your development. It’s designed to mix smoothly with the
+                of your development. It&apos;s designed to mix smoothly with the
                 knowledge and practical tools we offer, enabling you to align
                 your vision and desires effectively.
               </p>
@@ -164,7 +164,7 @@ function Body() {
           <div className="mt-10">
             <Accordion type="multiple">
               {faq.map((item, i) => (
-                <AccordionItem value={`item-${i}`}>
+                <AccordionItem value={`item-${i}`} key={i}>
                   <AccordionTrigger key={i}>{item.question}</AccordionTrigger>
                   <AccordionContent key={i}>{item.answer}</AccordionContent>
                 </AccordionItem>
