@@ -26,7 +26,7 @@ export default function LandingPage() {
 
 function Header() {
   return (
-    <header className="w-full py-4 bg-white shadow-sm dark:bg-black">
+    <header className="w-full py-4 pt-6">
       <div className="container flex items-center justify-between px-4 md:px-6">
         <p className="text-4xl">🧬</p>
       </div>
@@ -43,6 +43,7 @@ async function Body() {
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
               Pathway to Excellence
             </h1>
+
             <p className="mx-auto max-w-[700px] text-gray-700 dark:text-gray-400 md:text-xl">
               New Gen Performance is revolutionizing the game with untapped
               truths that drive human performance. We deliver unique knowledge,
