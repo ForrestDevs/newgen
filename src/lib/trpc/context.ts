@@ -1,6 +1,5 @@
 import { db } from "@/lib/db/index";
 import { validateRequest } from "@/lib/auth";
-
 /**
  * 1. CONTEXT
  *
@@ -13,12 +12,10 @@ import { validateRequest } from "@/lib/auth";
  *
  * @see https://trpc.io/docs/server/context
  */
+
 export async function createTRPCContext(opts: { headers: Headers }) {
   const { session, user } = await validateRequest();
-  if (!session || !user) {
-    throw new Error("Session or User not found");
-  }
-
+  
   return {
     db,
     user,

@@ -9,6 +9,11 @@ import {
 } from "@/components/ui/accordion";
 import { faq } from "@/config/faq";
 
+import { api } from "@/lib/trpc/api";
+import { WaitlistForm } from "./waitlist";
+import VideoPlayer from "./videoPlayer";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+
 export default function LandingPage() {
   return (
     <main className="flex flex-col min-h-[100vh]">
@@ -29,41 +34,28 @@ function Header() {
   );
 }
 
-function Body() {
+async function Body() {
   return (
     <div className="container flex flex-col gap-y-24 w-full">
-      <section id="hero" className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+      <section id="hero" className="w-full pt-12 md:pt-24 lg:pt-32 xl:pt-48">
         <div className="px-4 md:px-6 flex flex-col items-center justify-center space-y-6 text-center">
           <div className="space-y-4">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
               Pathway to Excellence
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-700 dark:text-gray-400 md:text-xl">
-              New Gen Performance is revolutionizing the game with untapped truths that
-              drive human performance. We deliver unique knowledge, tools, and
-              perspectives to create an all in one platform transforming
-              performance across all domains.
+              New Gen Performance is revolutionizing the game with untapped
+              truths that drive human performance. We deliver unique knowledge,
+              tools, and perspectives to create an all in one platform
+              transforming performance across all domains.
             </p>
           </div>
-          <div className="w-full max-w-sm space-y-2">
-            <form className="flex space-x-2">
-              <Input
-                className="max-w-lg flex-1 bg-gray-200 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-50 dark:placeholder:text-gray-400 dark:focus:ring-purple-500 dark:focus:ring-offset-gray-800"
-                placeholder="Enter your email"
-                type="email"
-              />
-              <Button
-                className="bg-blue-500 hover:bg-blue-600 text-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-purple-500 dark:hover:bg-purple-600 dark:focus:ring-purple-500 dark:focus:ring-offset-gray-800"
-                type="submit"
-              >
-                Join Waitlist
-              </Button>
-            </form>
-            <p className="text-xs text-gray-200">
-              Be the first to experience our game-changing platform.
-            </p>
-          </div>
+          <WaitlistForm message="Be the first to experience our game-changing platform." />
         </div>
+      </section>
+
+      <section id="video">
+        <VideoPlayer />
       </section>
 
       <section id="features" className="w-full py-12 md:py-24 lg:py-32">
@@ -185,24 +177,7 @@ function Body() {
               network of elite athletes and coaches.
             </p>
           </div>
-          <div className="mx-auto w-full max-w-sm space-y-2">
-            <form className="flex space-x-2">
-              <Input
-                className="max-w-lg flex-1 bg-gray-200 text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-50 dark:placeholder:text-gray-400 dark:focus:ring-purple-500 dark:focus:ring-offset-gray-800"
-                placeholder="Enter your email"
-                type="email"
-              />
-              <Button
-                className="bg-blue-500 hover:bg-blue-600 text-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-purple-500 dark:hover:bg-purple-600 dark:focus:ring-purple-500 dark:focus:ring-offset-gray-800"
-                type="submit"
-              >
-                Join Waitlist
-              </Button>
-            </form>
-            <p className="text-xs text-gray-600 dark:text-gray-400">
-              We&apos;ll keep you updated on our launch and exclusive offers.
-            </p>
-          </div>
+          <WaitlistForm message="We'll keep you updated on our launch and exclusive offers." />
         </div>
       </section>
     </div>

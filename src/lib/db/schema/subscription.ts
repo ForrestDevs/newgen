@@ -1,15 +1,9 @@
-import {
-  pgTable,
-  primaryKey,
-  timestamp,
-  varchar,
-} from "drizzle-orm/pg-core";
+import { pgTable, varchar, timestamp, primaryKey } from "drizzle-orm/pg-core";
 
 export const subscriptions = pgTable(
   "subscriptions",
   {
-    userId: varchar("user_id", { length: 255 })
-      .unique(),
+    userId: varchar("user_id", { length: 255 }).unique(),
     stripeCustomerId: varchar("stripe_customer_id", { length: 255 }).unique(),
     stripeSubscriptionId: varchar("stripe_subscription_id", {
       length: 255,

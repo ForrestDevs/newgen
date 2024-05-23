@@ -1,6 +1,5 @@
 import "server-only";
 
-  //  import { getUserAuth } from "@/lib/auth/utils";
 import { appRouter } from "@/lib/server/routers/_app";
 import { env } from "@/lib/env.mjs";
 import { createTRPCContext } from "./context";
@@ -19,7 +18,7 @@ import { cookies } from "next/headers";
 
 import SuperJSON from "superjson";
 
-const createContext = cache(() => {
+const createCachedContext = cache(() => {
   return createTRPCContext({
     headers: new Headers({
       cookie: cookies().toString(),
@@ -43,7 +42,7 @@ export const api = createTRPCProxyClient<typeof appRouter>({
     () =>
       ({ op }) =>
         observable((observer) => {
-          createContext()
+          createCachedContext()
             .then((ctx) => {
               return callProcedure({
                 procedures: appRouter._def.procedures,
