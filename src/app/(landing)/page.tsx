@@ -158,7 +158,7 @@ async function Body() {
             <Accordion type="multiple">
               {faq.map((item, i) => (
                 <AccordionItem value={`item-${i}`} key={i}>
-                  <AccordionTrigger key={i}>{item.question}</AccordionTrigger>
+                  <AccordionTrigger key={i} className="text-left">{item.question}</AccordionTrigger>
                   <AccordionContent key={i}>{item.answer}</AccordionContent>
                 </AccordionItem>
               ))}
