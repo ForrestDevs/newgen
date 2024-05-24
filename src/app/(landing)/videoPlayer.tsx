@@ -6,7 +6,7 @@ export default function VideoPlayer() {
     <Suspense fallback={<div>Loading...</div>}>
       <MuxPlayer
         streamType="on-demand"
-        playbackId="vkU01NGPZ022HUBHokXDhXzQaErsQksLuC00ZEN003E9sYk"
+        playbackId="o6lmUecceQkJiqacrR0202PC100CNasGvV1gZ2uMnOyyng"
         metadataVideoTitle="Placeholder (optional)"
         metadataViewerUserId="Placeholder (optional)"
         primaryColor="#FFFFFF"
