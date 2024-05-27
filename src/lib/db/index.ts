@@ -1,8 +1,7 @@
 import { env } from "@/lib/env.mjs";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import * as auth from "./schema/auth";
-import * as waitlist from "./schema/waitlist";
+import * as schema from "./schema";
 
 let connection: postgres.Sql;
 
@@ -21,10 +20,7 @@ if (env.NODE_ENV === "production") {
 }
 
 export const db = drizzle(connection, {
-  schema: {
-    ...auth,
-    ...waitlist,
-  },
+  schema,
   logger: env.NODE_ENV === "development",
 });
 

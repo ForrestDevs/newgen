@@ -1,5 +1,4 @@
-import AuthForm from "@/components/auth/Form";
-import { validateRequest } from "@/lib/auth";
+import { validateRequest } from "@/lib/auth/validate-request";
 
 export default async function Home() {
   const { session } = await validateRequest();
@@ -9,7 +8,6 @@ export default async function Home() {
       <pre className="bg-secondary p-4 rounded-lg my-2">
         {JSON.stringify(session, null, 2)}
       </pre>
-      <AuthForm action="/api/sign-out" />
     </main>
   );
 }

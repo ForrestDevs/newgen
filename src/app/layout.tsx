@@ -1,19 +1,30 @@
-import "./globals.css";
+import "@/lib/styles/globals.css";
+
 import React from "react";
-import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import TrpcProvider from "@/lib/trpc/Provider";
-import { cookies } from "next/headers";
-import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
-import { Inter } from "next/font/google";
+import { fontSans } from "@/lib/fonts";
+import TrpcProvider from "@/lib/trpc/react";
+import type { Metadata, Viewport } from "next";
+import { APP_NAME } from "@/config/constants";
+import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/theme-provider";
+import { cookies } from "next/headers";
 import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
-  title: "New Gen Performance",
-  description: "The next generation of performance",
+  title: {
+    default: APP_NAME,
+    template: `%s | ${APP_NAME}`,
+  },
+  description: "Take your performance to the next level with our tools",
+  icons: [{ rel: "icon", url: "/icon.png" }],
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({
@@ -22,25 +33,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🧬</text></svg>"
-        ></link>
-      </head>
-      <body className={cn(inter.className, "w-full h-screen")}>
-        <TrpcProvider cookies={cookies().toString()}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </TrpcProvider>
-        <Toaster richColors />
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TrpcProvider cookies={cookies().toString()}>{children}</TrpcProvider>
+          <Toaster richColors />
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

@@ -1,11 +1,42 @@
-import { initTRPC, TRPCError } from "@trpc/server";
-import { Context } from "@/lib/trpc/context";
+import { inferAsyncReturnType, initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import { db } from "@/lib/db/index";
+import { uncachedValidateRequest } from "@/lib/auth/validate-request";
+import { stripe } from "@/lib/stripe";
 
 /**
- * Initialization of tRPC backend
- * Should be done only once per backend!
+ * 1. CONTEXT
+ *
+ * This section defines the "contexts" that are available in the backend API.
+ *
+ * These allow you to access things when processing a request, like the database, the session, etc.
+ *
+ * This helper generates the "internals" for a tRPC context. The API handler and RSC clients each
+ * wrap this and provides the required context.
+ *
+ * @see https://trpc.io/docs/server/context
+ */
+
+export async function createTRPCContext(opts: { headers: Headers }) {
+  const { session, user } = await uncachedValidateRequest();
+  return {
+    db,
+    user,
+    session,
+    headers: opts.headers,
+    stripe: stripe,
+  };
+}
+
+export type Context = Awaited<ReturnType<typeof createTRPCContext>>;
+
+/**
+ * 2. INITIALIZATION
+ *
+ * This is where the tRPC API is initialized, connecting the context and transformer. We also parse
+ * ZodErrors so that you get typesafety on the frontend if your procedure fails due to validation
+ * errors on the backend.
  */
 const t = initTRPC.context<Context>().create({
   transformer: superjson,
@@ -20,26 +51,29 @@ const t = initTRPC.context<Context>().create({
     };
   },
 });
-/**
- * Export reusable router and procedure helpers
- * that can be used throughout the router
- */
-export const router = t.router;
-export const publicProcedure = t.procedure;
 
-/** Reusable middleware that enforces users are logged in before running the procedure. */
-const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
-  if (!ctx.session) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
-  }
-  return next({
-    ctx: {
-      ...ctx,
-      // infers the `session` as non-nullable
-      session: { ...ctx.session, user: ctx.user },
-    },
-  });
-});
+/**
+ * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
+ *
+ * These are the pieces you use to build your tRPC API. You should import these a lot in the
+ * "/src/server/api/routers" directory.
+ */
+
+/**
+ * This is how you create new routers and sub-routers in your tRPC API.
+ *
+ * @see https://trpc.io/docs/router
+ */
+export const createTRPCRouter = t.router;
+
+/**
+ * Public (unauthenticated) procedure
+ *
+ * This is the base piece you use to build new queries and mutations on your tRPC API. It does not
+ * guarantee that a user querying is authorized, but you can still access user session data if they
+ * are logged in.
+ */
+export const publicProcedure = t.procedure;
 
 /**
  * Protected (authenticated) procedure
@@ -49,4 +83,22 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  *
  * @see https://trpc.io/docs/procedures
  */
-export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
+  if (!ctx.session || !ctx.user) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  return next({
+    ctx: {
+      // infers the `session` and `user` as non-nullable
+      session: { ...ctx.session },
+      user: { ...ctx.user },
+    },
+  });
+});
+
+export type TRPCContext = inferAsyncReturnType<typeof createTRPCContext>;
+
+export type ProtectedTRPCContext = TRPCContext & {
+  user: NonNullable<TRPCContext["user"]>;
+  session: NonNullable<TRPCContext["session"]>;
+};
