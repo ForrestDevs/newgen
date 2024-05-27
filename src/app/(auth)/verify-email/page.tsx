@@ -27,7 +27,7 @@ export default async function VerifyEmailPage() {
         <CardTitle>Verify Email</CardTitle>
         <CardDescription>
           Verification code was sent to <strong>{user.email}</strong>. Check
-          your spam folder if you can't find the email.
+          your spam folder if you can&apos;t find the email.
         </CardDescription>
       </CardHeader>
       <CardContent>

@@ -1,6 +1,5 @@
 "use server";
 
-/* eslint @typescript-eslint/no-explicit-any:0, @typescript-eslint/prefer-optional-chain:0 */
 
 import { z } from "zod";
 import { env } from "@/lib/env.mjs";
