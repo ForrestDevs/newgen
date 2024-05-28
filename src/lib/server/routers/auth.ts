@@ -5,13 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 import { TRPCError } from "@trpc/server";
 import { waitlist } from "@/lib/db/schema";
 import { createTRPCRouter, publicProcedure } from "../trpc";
+import { generateId } from "lucia";
 
 export const authRouter = createTRPCRouter({
   waitlist: publicProcedure
     .input(z.object({ email: z.string().email() }))
     .output(z.object({ success: z.boolean(), message: z.string() }))
     .mutation(async ({ input }) => {
-      const newId = uuidv4();
+      const newId = generateId(21);
 
       await db.transaction(async (tx) => {
         // make sure the email is not already in the waitlist
