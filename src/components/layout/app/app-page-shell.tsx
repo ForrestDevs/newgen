@@ -5,13 +5,17 @@ import { PageNav } from "@/components/layout/app/app-page-nav";
 
 export function PageShell(props: PropsWithChildren) {
   return (
-    <main className="bg-primary-foreground flex flex-col items-start h-screen">
+    <div className="flex flex-col">
       <PageNav />
       <PageContent>{props.children}</PageContent>
-    </main>
+    </div>
   );
 }
 
 function PageContent(props: PropsWithChildren) {
-  return <div className="mx-2">{props.children}</div>;
+  return (
+    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+      {props.children}
+    </main>
+  );
 }

@@ -24,11 +24,11 @@ export function Signup() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
-        <CardTitle>{APP_NAME} Sign Up</CardTitle>
+        <CardTitle>{APP_NAME}</CardTitle>
         <CardDescription>Sign up to start using the app</CardDescription>
       </CardHeader>
       <CardContent>
-        <Button variant="outline" className="w-full" asChild>
+        {/* <Button variant="outline" className="w-full" asChild>
           <Link href="/login/discord">
             <DiscordLogoIcon className="mr-2 h-5 w-5" />
             Sign up with Discord
@@ -38,7 +38,7 @@ export function Signup() {
           <div className="flex-grow border-t border-muted" />
           <div className="mx-2 text-muted-foreground">or</div>
           <div className="flex-grow border-t border-muted" />
-        </div>
+        </div> */}
 
         <form action={formAction} className="space-y-4">
           <div className="space-y-2">

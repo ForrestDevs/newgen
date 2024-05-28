@@ -1,7 +1,20 @@
+import { checkAuth } from "@/lib/auth/actions";
+import { AppShell } from "@/components/layout/app/app-shell";
+
 export default async function AppLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return ( <main>{children}</main> )
+  await checkAuth();
+
+  return (
+    <AppShell>
+      <div>{children}</div>
+    </AppShell>
+  );
 }
+
+
+
+

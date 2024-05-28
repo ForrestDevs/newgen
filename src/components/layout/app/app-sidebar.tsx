@@ -1,62 +1,73 @@
 "use client";
 
-import { useAppShell } from "./app-shell";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { LucideIcon } from "lucide-react";
+import { BellIcon, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { defaultLinks, additionalLinks } from "@/config/nav";
-import { Logov6 } from "@/components/logo";
-import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import {
+  CardTitle,
+  CardDescription,
+  CardHeader,
+  CardContent,
+  Card,
+} from "@/components/ui/card";
 
 export function AppSidebar() {
-  const { isSidebarCollapsed } = useAppShell();
-  const { theme } = useTheme();
-
   return (
-    <>
-      <motion.div
-        className="hidden md:block bg-primary-foreground h-screen overflow-x-hidden"
-        animate={{
-          width: isSidebarCollapsed ? 0 : 250,
-          translateX: isSidebarCollapsed ? "-100%" : "0%",
-        }}
-        transition={{
-          type: "spring",
-          duration: 0.3,
-          bounce: isSidebarCollapsed ? 0 : 0.2,
-        }}
-      >
-        <div className="border-border border-b w-full mb-3 h-16">
-          <Link href="/dashboard">
-            <Logov6 className="w-[125px] py-2 ml-2" theme={theme!} />
+    <div className="hidden border-r bg-primary-foreground md:block">
+      <div className="flex h-full max-h-screen flex-col gap-2">
+        <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+          <Link className="flex items-center gap-2 font-semibold" href="#">
+            <p className="h-6 w-6">🧬</p>
+            <span className="">New Gen</span>
           </Link>
+          <Button className="ml-auto h-8 w-8" size="icon" variant="outline">
+            <BellIcon className="h-4 w-4" />
+            <span className="sr-only">Toggle notifications</span>
+          </Button>
         </div>
+
         <SidebarItems />
-      </motion.div>
-      <div
-        id="sidebar-handle"
-        className="md:flex hidden w-[1px] bg-border after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90"
-      />
-    </>
+
+        <div className="mt-auto p-4">
+          <Card x-chunk="dashboard-02-chunk-0">
+            <CardHeader className="p-2 pt-0 md:p-4">
+              <CardTitle>Upgrade to Pro</CardTitle>
+              <CardDescription>
+                Unlock all features and get unlimited access to our support
+                team.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
+              <Button className="w-full" size="sm">
+                Upgrade
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
   );
 }
 
 export function SidebarItems() {
   return (
-    <div className="px-2">
-      <SidebarSection links={defaultLinks} />
-      {additionalLinks.length > 0
-        ? additionalLinks.map((l) => (
-            <SidebarSection
-              links={l.links}
-              title={l.title}
-              border
-              key={l.title}
-            />
-          ))
-        : null}
+    <div className="flex-1">
+      <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
+        <SidebarSection links={defaultLinks} />
+        {additionalLinks.length > 0
+          ? additionalLinks.map((l) => (
+              <SidebarSection
+                links={l.links}
+                title={l.title}
+                border
+                key={l.title}
+              />
+            ))
+          : null}
+      </nav>
     </div>
   );
 }
@@ -107,20 +118,18 @@ function SidebarItem({
   return (
     <Link
       href={link.href}
-      className={`group transition-colors p-2 inline-block hover:bg-popover hover:text-primary text-muted-foreground text-xs hover:shadow rounded-md w-full${
+      className={`flex items-center gap-3 px-3 py-2 group transition-colors p-2 hover:bg-popover hover:text-primary text-muted-foreground text-xs hover:shadow rounded-md w-full${
         active ? " text-primary font-semibold" : ""
       }`}
     >
-      <div className="flex items-center">
-        <div
-          className={cn(
-            "opacity-0 left-0 h-6 w-[4px] absolute rounded-r-lg bg-primary",
-            active ? "opacity-100" : ""
-          )}
-        />
-        <link.icon className="h-3.5 mr-1" />
-        <span>{link.title}</span>
-      </div>
+      <div
+        className={cn(
+          "opacity-0 left-0 h-6 w-[4px] absolute rounded-r-lg bg-primary",
+          active ? "opacity-100" : ""
+        )}
+      />
+      <link.icon className="h-3.5 mr-1" />
+      <span>{link.title}</span>
     </Link>
   );
 }

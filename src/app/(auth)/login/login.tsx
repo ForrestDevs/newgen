@@ -24,23 +24,13 @@ export function Login() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
-        <CardTitle>{APP_NAME} Log In</CardTitle>
+        <CardTitle>{APP_NAME}</CardTitle>
         <CardDescription>
           Log in to your account to access your dashboard
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Button variant="outline" className="w-full" asChild>
-          <Link href="/login/discord">
-            <DiscordLogoIcon className="mr-2 h-5 w-5" />
-            Log in with Discord
-          </Link>
-        </Button>
-        <div className="my-2 flex items-center">
-          <div className="flex-grow border-t border-muted" />
-          <div className="mx-2 text-muted-foreground">or</div>
-          <div className="flex-grow border-t border-muted" />
-        </div>
+        
         <form action={formAction} className="grid gap-4">
           <div className="space-y-2">
             <Label>Email</Label>

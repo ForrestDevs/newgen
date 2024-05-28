@@ -34,7 +34,7 @@ export const AppShell = (props: PropsWithChildren) => {
   };
 
   return (
-    <div className="flex h-full relative">
+    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <AppShellContext.Provider
         value={{ isSidebarCollapsed, isSidebarCollapsedMobile, toggleSidebar }}
       >
