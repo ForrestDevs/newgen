@@ -11,6 +11,7 @@ export default function VideoPlayer() {
         metadataViewerUserId="Placeholder (optional)"
         primaryColor="#FFFFFF"
         secondaryColor="#000000"
+        style={{ aspectRatio: 16 / 9 }}
       />
     </Suspense>
   );

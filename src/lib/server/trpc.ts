@@ -52,6 +52,8 @@ const t = initTRPC.context<Context>().create({
   },
 });
 
+export const createCaller = t.createCallerFactory;
+
 /**
  * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
  *
@@ -102,3 +104,5 @@ export type ProtectedTRPCContext = TRPCContext & {
   user: NonNullable<TRPCContext["user"]>;
   session: NonNullable<TRPCContext["session"]>;
 };
+
+

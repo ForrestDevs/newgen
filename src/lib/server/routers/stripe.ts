@@ -1,163 +1,143 @@
 import { z } from "zod";
+import { env } from "@/lib/env.mjs";
 import { stripe } from "@/lib/stripe";
-import { absoluteUrl, formatPrice } from "@/lib/utils";
-import { freePlan, proPlan, subscriptionPlans } from "@/config/subscriptions";
+import { TRPCError } from "@trpc/server";
+import {
+  CreateCheckoutSessionInput,
+  createCheckoutSessionSchema,
+} from "@/lib/validations/stripe";
 import {
   createTRPCRouter,
   protectedProcedure,
   ProtectedTRPCContext,
 } from "@/lib/server/trpc";
-
-export const manageSubscriptionSchema = z.object({
-  stripePriceId: z.string(),
-  stripeCustomerId: z.string().optional().nullable(),
-  stripeSubscriptionId: z.string().optional().nullable(),
-  isPro: z.boolean(),
-});
-
-export type ManageSubscriptionInput = z.infer<typeof manageSubscriptionSchema>;
+import { courses, products, userPurchases } from "@/lib/db/schema";
+import { eq, and } from "drizzle-orm";
+import { api } from "@/lib/trpc/server";
 
 export const stripeRouter = createTRPCRouter({
-  getPlans: protectedProcedure.query(({ ctx }) => getStripePlans(ctx)),
-
-  getPlan: protectedProcedure.query(({ ctx }) => getStripePlan(ctx)),
-
-  managePlan: protectedProcedure
-    .input(manageSubscriptionSchema)
-    .mutation(({ ctx, input }) => manageSubscription(ctx, input)),
+  createCheckoutSession: protectedProcedure
+    .input(createCheckoutSessionSchema)
+    .output(z.object({ success: z.boolean(), clientSecret: z.string() }))
+    .mutation(({ ctx, input }) => createCheckoutSession({ ctx, input })),
 });
 
-export const getStripePlans = async (ctx: ProtectedTRPCContext) => {
-  try {
-    const user = await ctx.db.query.users.findFirst({
-      where: (table, { eq }) => eq(table.id, ctx.user.id),
-      columns: {
-        id: true,
-      },
-    });
-
-    if (!user) {
-      throw new Error("User not found.");
-    }
-
-    const proPrice = await stripe.prices.retrieve(proPlan.stripePriceId);
-
-    return subscriptionPlans.map((plan) => {
-      return {
-        ...plan,
-        price:
-          plan.stripePriceId === proPlan.stripePriceId
-            ? formatPrice((proPrice.unit_amount ?? 0) / 100, {
-                currency: proPrice.currency,
-              })
-            : formatPrice(0 / 100, { currency: proPrice.currency }),
-      };
-    });
-  } catch (err) {
-    console.error(err);
-    return [];
-  }
-};
-
-export const getStripePlan = async (ctx: ProtectedTRPCContext) => {
-  try {
-    const user = await ctx.db.query.users.findFirst({
-      where: (table, { eq }) => eq(table.id, ctx.user.id),
-      columns: {
-        stripePriceId: true,
-        stripeCurrentPeriodEnd: true,
-        stripeSubscriptionId: true,
-        stripeCustomerId: true,
-      },
-    });
-
-    if (!user) {
-      throw new Error("User not found.");
-    }
-
-    // Check if user is on a pro plan
-    const isPro =
-      !!user.stripePriceId &&
-      (user.stripeCurrentPeriodEnd?.getTime() ?? 0) + 86_400_000 > Date.now();
-
-    const plan = isPro ? proPlan : freePlan;
-
-    // Check if user has canceled subscription
-    let isCanceled = false;
-    if (isPro && !!user.stripeSubscriptionId) {
-      const stripePlan = await stripe.subscriptions.retrieve(
-        user.stripeSubscriptionId
-      );
-      isCanceled = stripePlan.cancel_at_period_end;
-    }
-
-    return {
-      ...plan,
-      stripeSubscriptionId: user.stripeSubscriptionId,
-      stripeCurrentPeriodEnd: user.stripeCurrentPeriodEnd,
-      stripeCustomerId: user.stripeCustomerId,
-      isPro,
-      isCanceled,
-    };
-  } catch (err) {
-    console.error(err);
-    return null;
-  }
-};
-
-export const manageSubscription = async (
-  ctx: ProtectedTRPCContext,
-  input: ManageSubscriptionInput
-) => {
-  const billingUrl = absoluteUrl("/dashboard/billing");
-
-  const user = await ctx.db.query.users.findFirst({
-    where: (table, { eq }) => eq(table.id, ctx.user.id),
-    columns: {
-      id: true,
-      email: true,
-      stripeCustomerId: true,
-      stripeSubscriptionId: true,
-      stripePriceId: true,
-    },
-  });
+async function createCheckoutSession({
+  ctx,
+  input,
+}: {
+  ctx: ProtectedTRPCContext;
+  input: CreateCheckoutSessionInput;
+}) {
+  const user = ctx.user;
 
   if (!user) {
-    throw new Error("User not found.");
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: "You must be logged in to create a checkout session.",
+    });
   }
 
-  // If the user is already subscribed to a plan, we redirect them to the Stripe billing portal
-  if (input.isPro && input.stripeCustomerId) {
-    const stripeSession = await ctx.stripe.billingPortal.sessions.create({
-      customer: input.stripeCustomerId,
-      return_url: billingUrl,
+  const userProfile = await api.user.getUserProfile.query();
+
+  try {
+    const product = await ctx.db
+      .select()
+      .from(products)
+      .where(eq(products.stripePriceId, input.stripePriceId));
+
+    if (product.length === 0) {
+      throw new TRPCError({
+        code: "NOT_FOUND",
+        message: "Product not found.",
+      });
+    }
+
+    const course = await ctx.db
+      .select()
+      .from(courses)
+      .where(eq(courses.productId, product[0].id));
+
+    if (course.length === 0) {
+      throw new TRPCError({
+        code: "BAD_REQUEST",
+        message: "Course not found.",
+      });
+    }
+
+    var existingStripeCustomer = false;
+    var stripeCustomerId = "";
+
+    try {
+      const previousPurchase = await ctx.db
+        .select()
+        .from(userPurchases)
+        .where(eq(userPurchases.userId, user.id));
+
+      if (previousPurchase.length > 0) {
+        console.log(
+          "Existing stripe customer",
+          previousPurchase[0].stripeCustomerId
+        );
+        existingStripeCustomer = true;
+        stripeCustomerId = previousPurchase[0].stripeCustomerId;
+      }
+    } catch (error) {
+      console.error(error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Failed to check for existing stripe customer.",
+      });
+    }
+
+    if (!existingStripeCustomer) {
+      const customer = await stripe.customers.create({
+        email: user.email,
+        name: userProfile.firstName + " " + userProfile.lastName,
+      });
+      console.log("New stripe Customer", customer);
+      stripeCustomerId = customer.id;
+    }
+
+    const checkoutSession = await stripe.checkout.sessions.create({
+      metadata: {
+        userId: user.id,
+        productId: product[0].id,
+        courseId: course[0].id,
+        stripePriceId: input.stripePriceId,
+        stripeCustomerId: stripeCustomerId,
+      },
+      customer_update: {
+        address: "auto",
+        shipping: "auto",
+      },
+      customer: stripeCustomerId,
+      ui_mode: "embedded",
+      line_items: [
+        {
+          price: input.stripePriceId,
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      return_url: `${env.NEXT_PUBLIC_APP_URL}/rocketfuel/purchase-complete/?session_id={CHECKOUT_SESSION_ID}`,
+      automatic_tax: { enabled: true },
     });
 
+    const clientSecret = checkoutSession.client_secret;
+
+    if (!clientSecret) {
+      throw new Error("Failed to create checkout session.");
+    }
+
     return {
-      url: stripeSession.url,
+      success: true,
+      clientSecret: clientSecret,
     };
+  } catch (err) {
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: `Failed to create checkout session ${err}`,
+    });
   }
-
-  // If the user is not subscribed to a plan, we create a Stripe Checkout session
-  const stripeSession = await ctx.stripe.checkout.sessions.create({
-    success_url: billingUrl,
-    cancel_url: billingUrl,
-    payment_method_types: ["card"],
-    mode: "subscription",
-    billing_address_collection: "auto",
-    customer_email: user.email,
-    line_items: [
-      {
-        price: input.stripePriceId,
-        quantity: 1,
-      },
-    ],
-    metadata: {
-      userId: user.id,
-    },
-  });
-
-  return {
-    url: stripeSession.url,
-  };
-};
+}

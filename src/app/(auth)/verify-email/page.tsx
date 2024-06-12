@@ -19,7 +19,6 @@ export default async function VerifyEmailPage() {
   const { user } = await validateRequest();
 
   if (!user) redirect(Paths.Login);
-  if (user.emailVerified) redirect(Paths.Dashboard);
 
   return (
     <Card className="w-full max-w-md">

@@ -10,6 +10,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cookies } from "next/headers";
 import { Analytics } from "@vercel/analytics/react";
+import { TailwindIndicator } from "@/components/tailwind-size";
 
 export const metadata: Metadata = {
   title: {
@@ -48,6 +49,7 @@ export default function RootLayout({
         >
           <TrpcProvider cookies={cookies().toString()}>{children}</TrpcProvider>
           <Toaster richColors />
+          <TailwindIndicator />
         </ThemeProvider>
         <Analytics />
       </body>

@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SendResetEmail } from "./send-reset-email";
+import { ForgotPasswordForm } from "./forgot-password-form";
 import { validateRequest } from "@/lib/auth/validate-request";
 import { Paths } from "@/config/constants";
 
@@ -17,7 +17,6 @@ export const metadata = {
 
 export default async function ForgotPasswordPage() {
   const { user } = await validateRequest();
-
   if (user) redirect(Paths.Dashboard);
 
   return (
@@ -29,7 +28,7 @@ export default async function ForgotPasswordPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <SendResetEmail />
+        <ForgotPasswordForm />
       </CardContent>
     </Card>
   );

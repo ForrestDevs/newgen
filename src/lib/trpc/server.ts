@@ -12,7 +12,7 @@ import { type TRPCErrorResponse } from "@trpc/server/rpc";
 import { observable } from "@trpc/server/observable";
 import { AppRouter, appRouter } from "@/lib/server/routers/_app";
 import { env } from "@/lib/env.mjs";
-import { createTRPCContext } from "@/lib/server/trpc";
+import { createCaller, createTRPCContext } from "@/lib/server/trpc";
 import { transformer } from "./shared";
 /**
  * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
@@ -62,3 +62,7 @@ export const api = createTRPCProxyClient<AppRouter>({
         }),
   ],
 });
+
+// const userCaller = createCaller(appRouter);
+// const ctx = await createCachedContext();
+// export const serverFunction = userCaller(ctx);

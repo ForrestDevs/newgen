@@ -1,14 +1,23 @@
 import { db } from "@/lib/db";
-import { users, sessions, type User as DbUser } from "@/lib/db/schema";
-import { Lucia, TimeSpan, type User, type Session } from "lucia";
-import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle";
 import { env } from "@/lib/env.mjs";
+import { Lucia, TimeSpan } from "lucia";
+import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle";
+import {
+  users,
+  sessions,
+  type User as DbUser,
+  type UserProfile,
+  type UserSurveyResponse,
+} from "@/lib/db/schema";
 
 const IS_DEV = env.NODE_ENV === "development" ? "DEV" : "PROD";
 
 const adapter = new DrizzlePostgreSQLAdapter(db, sessions, users);
 
-interface DatabaseUserAttributes extends Omit<DbUser, "hashedPassword"> {}
+interface DatabaseUserAttributes extends Omit<DbUser, "hashedPassword"> {
+  profile?: UserProfile;
+  surveyResponses: UserSurveyResponse[];
+}
 interface DatabaseSessionAttributes {}
 
 declare module "lucia" {
@@ -28,7 +37,8 @@ export const lucia = new Lucia(adapter, {
       id: attributes.id,
       email: attributes.email,
       emailVerified: attributes.emailVerified,
-      avatar: attributes.avatar,
+      userProfile: attributes.profile,
+      surveyResponses: attributes.surveyResponses,
       createdAt: attributes.createdAt,
       updatedAt: attributes.updatedAt,
     };

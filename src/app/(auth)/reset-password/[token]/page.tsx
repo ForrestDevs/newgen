@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ResetPassword } from "./reset-password";
+import { ResetPasswordForm } from "./reset-password-form";
 
 export const metadata = {
   title: "Reset Password",
@@ -24,7 +24,7 @@ export default function ResetPasswordPage({
         <CardDescription>Enter new password.</CardDescription>
       </CardHeader>
       <CardContent>
-        <ResetPassword token={params.token} />
+        <ResetPasswordForm token={params.token} />
       </CardContent>
     </Card>
   );

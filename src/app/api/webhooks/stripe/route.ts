@@ -1,10 +1,19 @@
-import { headers } from "next/headers";
+import { z } from "zod";
+import { db } from "@/lib/db";
 import type Stripe from "stripe";
+import { generateId } from "lucia";
 import { env } from "@/lib/env.mjs";
 import { stripe } from "@/lib/stripe";
-import { db } from "@/lib/db";
-import { users } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
+import { headers } from "next/headers";
+import { courseUsers, userPurchases } from "@/lib/db/schema";
+
+const metadataSchema = z.object({
+  userId: z.string(),
+  productId: z.string(),
+  stripeCustomerId: z.string(),
+  stripePriceId: z.string(),
+  courseId: z.string(),
+});
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -26,67 +35,87 @@ export async function POST(req: Request) {
   }
 
   switch (event.type) {
-    case "checkout.session.completed": {
-      const checkoutSessionCompleted = event.data.object;
-
-      const userId = checkoutSessionCompleted?.metadata?.userId;
-
-      if (!userId) {
-        return new Response("User id not found in checkout session metadata.", {
-          status: 404,
-        });
-      }
-
-      // Retrieve the subscription details from Stripe
-      const subscription = await stripe.subscriptions.retrieve(
-        checkoutSessionCompleted.subscription as string
-      );
-
-      // Update the user stripe into in our database
-      // Since this is the initial subscription, we need to update
-      // the subscription id and customer id
-      await db
-        .update(users)
-        .set({
-          stripeSubscriptionId: subscription.id,
-          stripeCustomerId: subscription.customer as string,
-          stripePriceId: subscription.items.data[0]?.price.id,
-          stripeCurrentPeriodEnd: new Date(
-            subscription.current_period_end * 1000
-          ),
-        })
-        .where(eq(users.id, userId));
-
+    case "payment_intent.created": {
+      const paymentIntent = event.data.object;
+      console.log("Payment Intent Created");
       break;
     }
-    case "invoice.payment_succeeded": {
-      const invoicePaymentSucceeded = event.data.object;
+    case "payment_intent.succeeded": {
+      const paymentIntent = event.data.object;
+      console.log("Payment Succeeded");
+      break;
+    }
+    case "payment_intent.payment_failed": {
+      const paymentIntent = event.data.object;
+      console.log("Payment Failed");
+      break;
+    }
+    case "charge.succeeded": {
+      const chargeSucceeded = event.data.object;
+      console.log("Charge Succeeded");
+      break;
+    }
+    case "checkout.session.completed": {
+      const checkoutSessionCompleted = event.data.object;
+      const metadata = checkoutSessionCompleted?.metadata;
+      console.log("Checkout Session Completed, with metadata:", metadata);
 
-      const userId = invoicePaymentSucceeded?.metadata?.userId;
-
-      if (!userId) {
-        return new Response("User id not found in invoice metadata.", {
+      if (!metadata) {
+        return new Response("Metadata not found in checkout session.", {
           status: 404,
         });
       }
 
-      // Retrieve the subscription details from Stripe
-      const subscription = await stripe.subscriptions.retrieve(
-        invoicePaymentSucceeded.subscription as string
-      );
+      try {
+        //log purchase
+        // Validate the metadata object
+        const validatedMetadata = metadataSchema.parse(metadata);
 
-      // Update the price id and set the new period end
-      await db
-        .update(users)
-        .set({
-          stripePriceId: subscription.items.data[0]?.price.id,
-          stripeCurrentPeriodEnd: new Date(
-            subscription.current_period_end * 1000
-          ),
-        })
-        .where(eq(users.id, userId));
+        // Access the validated fields
+        const { userId, productId, stripeCustomerId, stripePriceId, courseId } =
+          validatedMetadata;
 
-      break;
+        console.log("Validated Metadata", validatedMetadata);
+
+        const logPurchase = await db.insert(userPurchases).values({
+          id: generateId(21),
+          userId: userId,
+          productId: productId,
+          stripeCustomerId: stripeCustomerId,
+          priceId: stripePriceId,
+        });
+
+        if (!logPurchase) {
+          return new Response("Failed to log purchase", { status: 400 });
+        }
+
+        const courseUserId = generateId(21);
+
+        const grantAccess = await db.insert(courseUsers).values({
+          id: courseUserId,
+          courseId: courseId,
+          userId: userId,
+        });
+
+        if (!grantAccess) {
+          return new Response("Failed to grant course access", {
+            status: 400,
+          });
+        }
+
+        console.log("Course Access Granted");
+
+        return new Response("Purchase logged and course access granted", {
+          status: 200,
+        });
+      } catch (error) {
+        return new Response(
+          `Webhook Error: ${
+            error instanceof Error ? error.message : "Unknown error."
+          }`,
+          { status: 400 }
+        );
+      }
     }
     default:
       console.warn(`Unhandled event type: ${event.type}`);

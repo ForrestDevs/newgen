@@ -59,3 +59,19 @@ export async function getUserSubscriptionPlan() {
   //   isCanceled,
   // };
 }
+
+
+export async function getUserProducts() {
+  const { session, user } = await validateRequest();
+
+  if (!session || !user) {
+    throw new Error("User not found.");
+  }
+
+  const products = await stripe.prices.list({
+    active: true,
+    limit: 100,
+  });
+
+  return products.data;
+}

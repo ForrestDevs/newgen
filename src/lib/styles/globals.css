@@ -74,3 +74,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+mux-player {
+  --seek-backward-button: none;
+  --seek-forward-button: none;
+  --fullscreen-button: none;
+  --volume-range: none;
+  --rendition-selectmenu: none;
+  --mute-button: none;
+}

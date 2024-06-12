@@ -1,20 +1,18 @@
-import { checkAuth } from "@/lib/auth/actions";
+import { validateRequest } from "@/lib/auth/validate-request";
 import { AppShell } from "@/components/layout/app/app-shell";
+import AdminPanelLayout from "@/components/admin-panel/admin-panel-layout";
 
 export default async function AppLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  await checkAuth();
+  const { user } = await validateRequest();
+  if (!user) return null;
 
   return (
-    <AppShell>
+    <AdminPanelLayout>
       <div>{children}</div>
-    </AppShell>
+    </AdminPanelLayout>
   );
 }
-
-
-
-

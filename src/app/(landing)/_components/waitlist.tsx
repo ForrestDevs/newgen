@@ -27,11 +27,11 @@ export function WaitlistForm({ message }: { message: string }) {
     },
   });
 
-  const { mutateAsync: joinWaitlist } = api.auth.waitlist.useMutation({});
+  const waitlistMutation = api.user.addUserToWaitlist.useMutation();
 
   async function onSubmit(values: z.infer<typeof waitlistSchema>) {
     console.log("values", values);
-    const res = await joinWaitlist(
+    const res = await waitlistMutation.mutateAsync(
       {
         email: values.email,
       },

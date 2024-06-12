@@ -5,7 +5,7 @@ import { PageNav } from "@/components/layout/app/app-page-nav";
 
 export function PageShell(props: PropsWithChildren) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-[100vh]">
       <PageNav />
       <PageContent>{props.children}</PageContent>
     </div>

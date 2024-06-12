@@ -10,4 +10,6 @@ export enum Paths {
   Dashboard = "/dashboard",
   VerifyEmail = "/verify-email",
   ResetPassword = "/reset-password",
+  CreateProfile = "/create-profile",
+  IntroSurvey = "/intro-survey",
 }

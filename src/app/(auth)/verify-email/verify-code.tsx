@@ -1,59 +1,133 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-label";
-import { useEffect, useRef } from "react";
-import { useFormState } from "react-dom";
 import { toast } from "sonner";
-import { ExclamationTriangleIcon } from "@/components/icons";
+import { useState } from "react";
+import { api } from "@/lib/trpc/react";
+import { useForm } from "react-hook-form";
+import { Paths } from "@/config/constants";
+import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoadingButton } from "@/components/ui/loading-button";
 import {
-  logout,
-  verifyEmail,
-  resendVerificationEmail as resendEmail,
-} from "@/lib/auth/actions";
-import { SubmitButton } from "@/components/submit-button";
+  type VerifyEmailInput,
+  verifyEmailSchema,
+} from "@/lib/validations/auth";
+import {
+  Form,
+  FormField,
+  FormMessage,
+  FormControl,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 
-export const VerifyCode = () => {
-  const [verifyEmailState, verifyEmailAction] = useFormState(verifyEmail, null);
-  const [resendState, resendAction] = useFormState(resendEmail, null);
-  const codeFormRef = useRef<HTMLFormElement>(null);
+export function VerifyCode() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (resendState?.success) {
-      toast("Email sent!");
-    }
-    if (resendState?.error) {
-      toast(resendState.error, {
-        icon: <ExclamationTriangleIcon className="h-5 w-5 text-destructive" />,
-      });
-    }
-  }, [resendState?.error, resendState?.success]);
+  const form = useForm<VerifyEmailInput>({
+    resolver: zodResolver(verifyEmailSchema),
+    defaultValues: {
+      code: "",
+    },
+  });
 
-  useEffect(() => {
-    if (verifyEmailState?.error) {
-      toast(verifyEmailState.error, {
-        icon: <ExclamationTriangleIcon className="h-5 w-5 text-destructive" />,
-      });
-    }
-  }, [verifyEmailState?.error]);
+  const verifyEmailMutation = api.auth.verifyEmail.useMutation({
+    onMutate: () => {
+      toast.info("Verifying email...");
+      setLoading(true);
+    },
+    onSuccess: (data) => {
+      setLoading(false);
+      toast.success("Email verified, signing in...");
+      router.push(data.redirect);
+    },
+    onError: (err) => {
+      setLoading(false);
+      toast.error(err.message);
+    },
+  });
+
+  const resendMutation = api.auth.resendVerificationEmail.useMutation({
+    onMutate: () => {
+      toast.info("Resending verification email...");
+      setLoading(true);
+    },
+    onSuccess: () => {
+      setLoading(false);
+      toast.success("Resent verification email");
+    },
+    onError: (err) => {
+      setLoading(false);
+      toast.error(err.message);
+    },
+  });
+
+  const logoutMutation = api.auth.logout.useMutation({
+    onMutate: () => {
+      toast.info("Logging out...");
+      setLoading(true);
+    },
+    onSuccess: (data) => {
+      setLoading(false);
+      toast.success("Logged out");
+      router.push(Paths.Login);
+    },
+    onError: (err) => {
+      setLoading(false);
+      toast.error(err.message);
+    },
+  });
+
+  function onSubmit(values: VerifyEmailInput) {
+    verifyEmailMutation.mutate(values);
+  }
 
   return (
     <div className="flex flex-col gap-2">
-      <form ref={codeFormRef} action={verifyEmailAction}>
-        <Label htmlFor="code">Verification code</Label>
-        <Input className="mt-2" type="text" id="code" name="code" required />
-        <SubmitButton className="mt-4 w-full">Verify</SubmitButton>
-      </form>
-      <form action={resendAction}>
-        <SubmitButton className="w-full" variant="secondary">
-          Resend Code
-        </SubmitButton>
-      </form>
-      <form action={logout}>
-        <SubmitButton variant="link" className="p-0 font-normal">
-          want to use another email? Log out now.
-        </SubmitButton>
-      </form>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <FormField
+            control={form.control}
+            name="code"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Verification code</FormLabel>
+                <FormControl>
+                  <Input
+                    required
+                    placeholder="123456"
+                    autoComplete="one-time-code"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <LoadingButton loading={loading} type="submit" className="w-full">
+            Verify
+          </LoadingButton>
+        </form>
+      </Form>
+      <LoadingButton
+        loading={loading}
+        onClick={() => resendMutation.mutate}
+        className="w-full"
+        variant={"secondary"}
+      >
+        Resend Code
+      </LoadingButton>
+
+      <LoadingButton
+        loading={loading}
+        onClick={() => logoutMutation.mutate}
+        className="p-0 font-normal"
+        variant={"link"}
+      >
+        want to use another email? Log out now.
+      </LoadingButton>
     </div>
   );
-};
+}
