@@ -43,28 +43,34 @@ export const faq = [
 
 export const whatsIncluded = [
   {
-    title: "Over 55 Strategic Exercises",
+    title: "Over 55 strategic exercises",
   },
   {
-    title: "How-To Videos for All Exercises",
+    title: "How-to videos for all exercises",
   },
   {
-    title: "5 Sample Workouts",
+    title: "Guide on how to structure each workout",
   },
   {
-    title: "Access to Workout Split Models",
+    title: "Guide on how to structure each week",
   },
   {
-    title: "Over 10 Key Insights for Speed Development",
+    title: "5 sample workouts",
   },
   {
-    title: "Extra Training Principles in a Quick Read",
+    title: "Quick-read principals to understand your training",
   },
   {
-    title: "No Special Equipment Needed",
+    title: "No special equipment needed",
   },
   {
-    title: "Track and Progress Training Gains",
+    title: "Over 10 key insights for speed development",
+  },
+  {
+    title: "How to track your progress and training gains",
+  },
+  {
+    title: "Custom 3-month summer speed program (available on request)",
   },
 ];
 

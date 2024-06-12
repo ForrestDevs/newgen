@@ -58,7 +58,7 @@ export default function Science() {
           />
         </div>
         <h2>Rate and Time of Maximum Force Production:</h2>
-        <h3>Understand the Game's Demands:</h3>
+        <h3>Understand the Game&apos;s Demands:</h3>
         <p>
           In sports like hockey, intense actions like sprints or fast breaks
           last just a few seconds. Your training should mirror this reality.
@@ -146,7 +146,7 @@ export default function Science() {
           your sport, every session translates into better performance during
           games. Plus, it&apos;s all backed by science and the proven results of
           top athletes. So, when you train with us, you&apos;re not just lifting
-          weights — you're gearing up to be faster and more competitive in your
+          weights — you&apos;re gearing up to be faster and more competitive in your
           sport.
         </p>
       </article>
