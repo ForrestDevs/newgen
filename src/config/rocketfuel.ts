@@ -41,6 +41,33 @@ export const faq = [
   },
 ];
 
+export const whatsIncluded = [
+  {
+    title: "Over 55 Strategic Exercises",
+  },
+  {
+    title: "How-To Videos for All Exercises",
+  },
+  {
+    title: "5 Sample Workouts",
+  },
+  {
+    title: "Access to Workout Split Models",
+  },
+  {
+    title: "Over 10 Key Insights for Speed Development",
+  },
+  {
+    title: "Extra Training Principles in a Quick Read",
+  },
+  {
+    title: "No Special Equipment Needed",
+  },
+  {
+    title: "Track and Progress Training Gains",
+  },
+];
+
 export const keyInsights = [
   {
     number: 1,
@@ -591,33 +618,6 @@ export const speedCatalog = [
         uploaded: true,
       },
     ],
-  },
-];
-
-export const whatsIncluded = [
-  {
-    point: "6 sample workouts",
-  },
-  {
-    point: "Over 55 strategic exercises",
-  },
-  {
-    point: "How-to videos for all exercises",
-  },
-  {
-    point: "Access to workout split models",
-  },
-  {
-    point: "Over 10 key insights for speed development",
-  },
-  {
-    point: "Extra training principles in a quick read",
-  },
-  {
-    point: "No special equipment needed",
-  },
-  {
-    point: "Track and progress training gains",
   },
 ];
 

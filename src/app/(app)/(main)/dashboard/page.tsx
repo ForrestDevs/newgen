@@ -1,8 +1,5 @@
-import { validateRequest } from "@/lib/auth/validate-request";
-import { PageShell } from "@/components/layout/app/app-page-shell";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardHeader,
@@ -10,33 +7,6 @@ import {
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-  TableCell,
-} from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import {
-  ActivityIcon,
-  BarChart,
-  ClockIcon,
-  CreditCardIcon,
-  EyeIcon,
-  LineChart,
-  LockIcon,
-  MoveHorizontalIcon,
-  PlusIcon,
-  UsersIcon,
-} from "lucide-react";
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import { api } from "@/lib/trpc/server";
 
@@ -105,7 +75,7 @@ export default async function Home() {
               Welcome back, {(await userProfile).firstName}
             </h1>
             <p className="text-gray-500 dark:text-gray-400 md:text-lg">
-              Let's dive into your dashboard and see what's new.
+              Let&apos;s dive into your dashboard and see what's new.
             </p>
           </div>
         </section>
@@ -116,8 +86,12 @@ export default async function Home() {
               {section.title}
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {section.cards.map((card) => (
-                <Link href={card.href} className="hover:scale-[1.03] transition-all">
+              {section.cards.map((card, i) => (
+                <Link
+                  key={i}
+                  href={card.href}
+                  className="hover:scale-[1.03] transition-all"
+                >
                   <Card key={i}>
                     <CardHeader>
                       <CardTitle>{card.title}</CardTitle>

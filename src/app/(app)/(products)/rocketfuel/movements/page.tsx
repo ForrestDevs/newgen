@@ -45,17 +45,14 @@ export default async function Movements() {
       </section>
       <section id="Catelog">
         {speedCatalog.map((category, i) => (
-          <div className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+          <div key={i} className="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
             <div className="mb-8">
               <h2 className="text-2xl font-bold mb-6">{category.name}</h2>
               <p className="text-lg text-gray-600 dark:text-gray-400">
                 {category.description}
               </p>
             </div>
-            <div
-              key={i}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-            >
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {category.videos.map((exercise, i) => (
                 <Dialog key={i}>
                   <DialogTrigger asChild>
@@ -90,26 +87,6 @@ export default async function Movements() {
                     />
                   </DialogContent>
                 </Dialog>
-                //  <Suspense fallback={<Loader />}>
-                //* <Image
-                // src={`https://image.mux.com/${exercise.playback_id}/thumbnail.png`}
-                ///alt={exercise.title}
-                //className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300 cursor-pointer"
-                //width={500}
-                //height={500}
-
-                ///* </Suspense>
-                // <Card
-                //   key={i}
-                //   className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 "
-                // >
-                //   <CardContent>
-
-                //   </CardContent>
-                //   <CardFooter className="px-4 text-md font-semibold">
-                //     {exercise.title}
-                //   </CardFooter>
-                // </Card>
               ))}
             </div>
           </div>

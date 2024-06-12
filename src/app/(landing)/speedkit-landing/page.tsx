@@ -25,44 +25,12 @@ import {
   WorkflowIcon,
   ZoomInIcon,
 } from "lucide-react";
-const speedFAQ = [
-  {
-    question: "What is New Gen Performance?",
-    answer:
-      "New Gen Performance is a platform that delivers unique knowledge, tools, and perspectives to create an all-in-one platform transforming performance across all domains.",
-  },
-  {
-    question: "How does New Gen Performance work?",
-    answer:
-      "Our platform harnesses unique insights, application tools, and cutting-edge software to propel you toward your full athletic potential.",
-  },
-  {
-    question: "What features does New Gen Performance offer?",
-    answer:
-      "Our platform offers multimedia content, a performance planner, my intimate journey, a revolutionary approach, customized learning paths, and an off-season development blueprint.",
-  },
-  {
-    question: "How can I join the New Gen Performance community?",
-    answer:
-      "Be the first to experience our game-changing platform and join a network of elite athletes and coaches by signing up for our waitlist.",
-  },
-];
-
-const included = [
-  "6 Sample Workouts",
-  "Over 55 Strategic Exercises",
-  "How-To Videos for All Exercises",
-  "Access to Workout Split Models",
-  "Over 10 Key Insights for Speed Development",
-  "Extra Training Principles in a Quick Read",
-  "No Special Equipment Needed",
-  "Track and Progress Training Gains",
-];
+import { faq, whatsIncluded } from "@/config/rocketfuel";
 
 export default function SpeedKitLanding() {
   return (
     <main className="flex flex-col min-h-[100vh]">
-      <div className="container flex flex-col gap-y-8 w-full">
+      <div className="container flex flex-col gap-y-24 w-full">
         <Image
           src="/rocketfuellogo.png"
           alt="Rocket Fuel Speed Kit"
@@ -72,16 +40,15 @@ export default function SpeedKitLanding() {
         />
 
         <section id="hero" className="w-full">
-          <div className="px-4 md:px-6 flex flex-col items-center justify-center space-y-6 text-center">
-            <div className="space-y-4">
+          <div className="px-4 md:px-6 flex flex-col items-center justify-center space-y-10 text-center">
+            <div className="space-y-8">
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-orange-500 to-red-700">
                 Discover the secrets to lightning-fast speed and explosive power
               </h1>
 
               <p className="mx-auto max-w-[700px] text-gray-700 dark:text-gray-400 md:text-xl">
-                Rocket Fuel Speed Kit is a comprehensive speed development plan,
-                designed and employed by elite hockey players and coaches to
-                enhance speed and explosive power.
+                Rocket Fuel Speed Kit is grounded in scientific principals that
+                Mateo Dixon personally uses to enhance speed and explosiveness.
               </p>
             </div>
             <Link href="/login">
@@ -113,7 +80,7 @@ export default function SpeedKitLanding() {
             <div className="flex flex-col items-center space-y-6">
               <div className="text-center mb-4">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  What's Included
+                  What&apos;s Included
                 </h1>
                 <p className="mt-4 text-gray-500 dark:text-gray-400 md:text-xl">
                   Unlock your full speed potential with our expert-designed
@@ -121,11 +88,11 @@ export default function SpeedKitLanding() {
                 </p>
               </div>
               <div className="flex flex-col justify-center gap-4">
-                {included.map((item, i) => (
+                {whatsIncluded.map((item, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <CircleCheckIcon className="min-w-10 min-h-10 text-amber-500 mr-2" />
                     <div>
-                      <h3 className="text-lg font-semibold">{item}</h3>
+                      <h3 className="text-lg font-semibold">{item.title}</h3>
                     </div>
                   </div>
                 ))}
@@ -292,7 +259,7 @@ export default function SpeedKitLanding() {
             </div>
             <div className="mt-10">
               <Accordion type="multiple">
-                {speedFAQ.map((item, i) => (
+                {faq.map((item, i) => (
                   <AccordionItem value={`item-${i}`} key={i}>
                     <AccordionTrigger key={i} className="text-left">
                       {item.question}

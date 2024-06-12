@@ -63,7 +63,7 @@ function Purchase() {
           <div className="flex flex-col items-center space-y-6">
             <div className="text-center mb-4">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                What's Included
+                What&apos;s Included
               </h1>
               <p className="mt-4 text-gray-500 dark:text-gray-400 md:text-xl">
                 Unlock your full speed potential with our expert-designed

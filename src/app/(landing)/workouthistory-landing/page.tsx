@@ -5,7 +5,7 @@ export default function WorkoutHistoryLanding() {
         <article className="prose">
           <h1>Work Out History</h1>
           <p> 
-            See the last 4 years of a D1 hockey player's workout history.   
+            See the last 4 years of a D1 hockey player&apos;s workout history.   
           </p>
         </article>
       </div>

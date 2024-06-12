@@ -17,12 +17,12 @@ export default function Science() {
         <h2>The Importance of Periodization</h2>
         <p>
           Think of periodization as creating a smart game plan for your training
-          year. It's about organizing your workouts so that you do the right
+          year. It&apos;s about organizing your workouts so that you do the right
           types of training at the right times. For example, you might focus on
           getting stronger with basic strength training during the first part of
-          the off-season. Then, as your season gets closer, you'd switch to more
+          the off-season. Then, as your season gets closer, you&apos;d switch to more
           power-focused exercises to help you explode into action faster. Right
-          before your competitions start, you'd work on perfecting your
+          before your competitions start, you&apos;d work on perfecting your
           sprinting technique and speeding up your movements. This approach
           helps you peak at just the right time for your games.
         </p>
@@ -42,9 +42,9 @@ export default function Science() {
           Ever wondered if your training is as fast as you need to be on the ice
           or field? If you're just doing slow, heavy lifts like squats and
           deadlifts without a focus on speed, you might not be developing the
-          quickness you need. Training for speed isn't just about lifting;
+          quickness you need. Training for speed isn&apos;t just about lifting;
           it&apos;s about how quickly and explosively you can move. Think about
-          it — training to sprint faster by only jogging doesn't quite make
+          it — training to sprint faster by only jogging doesn&apos;t quite make
           sense, does it?
         </p>
         <div className="flex justify-center">
@@ -190,7 +190,7 @@ function Foo() {
           <h3>Dynamic Effort and Rate of Force Production</h3>
           <p>
             Training should include fast, explosive movements to match the
-            demands of your sport. Long slow exercises won’t cut it; instead,
+            demands of your sport. Long slow exercises won&apos;t cut it; instead,
             focus on building quick explosive strength and
             speed&#8203;:citation[oaicite:12]&#8203;.
           </p>

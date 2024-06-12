@@ -11,7 +11,7 @@ import { SkeletonCard } from "@/components/ui/skeleton-card";
 
 export default function SurveyPage() {
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full max-w-lg">
       <CardHeader>
         <CardTitle>Survey</CardTitle>
         <CardDescription>

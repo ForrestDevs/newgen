@@ -17,6 +17,8 @@ import {
   FormMessage,
   FormLabel,
 } from "@/components/ui/form";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function SurveyForm() {
   const router = useRouter();
@@ -52,13 +54,13 @@ export default function SurveyForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
           name="goal"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>What's your ultimate goal for hockey?</FormLabel>
+              <FormLabel>What&apos;s your ultimate goal for hockey?</FormLabel>
               <FormControl>
                 <Textarea
                   required
@@ -74,17 +76,53 @@ export default function SurveyForm() {
           control={form.control}
           name="performance"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="space-y-4">
               <FormLabel>
                 What part of performance do you think is the most important for
                 your growth?
               </FormLabel>
               <FormControl>
-                <Textarea
-                  required
-                  placeholder="Fitness levels, skating faster"
-                  {...field}
-                />
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className="flex flex-col space-y-4"
+                >
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="skill" />
+                    </FormControl>
+                    <FormLabel className="font-normal">
+                      <strong>Skill:</strong> (Hockey skills and techniques)
+                    </FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="body" />
+                    </FormControl>
+                    <FormLabel className="font-normal">
+                      <strong>Body:</strong> (Physical speed, strength, and
+                      overall fitness)
+                    </FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="mind" />
+                    </FormControl>
+                    <FormLabel className="font-normal">
+                      <strong>Mind:</strong> (Confidence, mentality, fears,
+                      skill expression)
+                    </FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="knowledge" />
+                    </FormControl>
+                    <FormLabel className="font-normal">
+                      <strong>Knowledge:</strong> (Where to focus, what to
+                      improve, and why it&apos;s important)
+                    </FormLabel>
+                  </FormItem>
+                </RadioGroup>
               </FormControl>
               <FormMessage />
             </FormItem>
