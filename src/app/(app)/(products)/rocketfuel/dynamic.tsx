@@ -75,7 +75,7 @@ function Purchase() {
                 <div key={i} className="flex items-center gap-2">
                   <CircleCheckIcon className="min-w-10 min-h-10 text-amber-500 mr-2" />
                   <div>
-                    <h3 className="text-lg font-semibold">{item.point}</h3>
+                    <h3 className="text-lg font-semibold">{item.title}</h3>
                   </div>
                 </div>
               ))}
