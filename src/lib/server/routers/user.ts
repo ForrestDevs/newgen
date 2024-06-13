@@ -2,8 +2,15 @@ import { db } from "@/lib/db";
 import { generateId } from "lucia";
 import { and, eq } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
-import { products, userProfiles, waitlist } from "@/lib/db/schema";
-import { userPurchases, courses, courseUsers } from "@/lib/db/schema";
+import {
+  products,
+  userProfiles,
+  waitlist,
+  userPurchases,
+  courses,
+  courseUsers,
+  oneOnOneRequests,
+} from "@/lib/db/schema";
 import {
   protectedProcedure,
   createTRPCRouter,
@@ -13,11 +20,13 @@ import {
 import {
   GrantCourseAccessInput,
   LogUserPurchaseInput,
+  RequestOneonOneInput,
   RevokeCourseAccessInput,
   UserHasCourseInput,
   WaitlistInput,
   grantCourseAccessSchema,
   logUserPurchaseSchema,
+  requestOneonOneInputSchema,
   revokeCourseAccessSchema,
   successSchema,
   userCoursesQuerySchema,
@@ -27,6 +36,7 @@ import {
   userProfileQuerySchema,
   waitlistSchema,
 } from "@/lib/validations/user";
+import { EmailTemplate, sendMail } from "@/lib/email";
 
 export const userRouter = createTRPCRouter({
   getUserProfile: protectedProcedure
@@ -36,6 +46,10 @@ export const userRouter = createTRPCRouter({
     .input(waitlistSchema)
     .output(successSchema)
     .mutation((input) => addUserToWaitlist(input)),
+  requestOneonOne: protectedProcedure
+    .input(requestOneonOneInputSchema)
+    .output(successSchema)
+    .mutation(({ input, ctx }) => requestOneonOne({ input, ctx })),
   logUserPurchase: protectedProcedure
     .input(logUserPurchaseSchema)
     .output(successSchema)
@@ -59,6 +73,77 @@ export const userRouter = createTRPCRouter({
     .output(userHasCourseQuerySchema)
     .query(({ input, ctx }) => userHasCourse({ input, ctx })),
 });
+
+async function requestOneonOne({
+  input,
+  ctx,
+}: {
+  input: RequestOneonOneInput;
+  ctx: ProtectedTRPCContext;
+}) {
+  const newId = generateId(21);
+
+  const user = ctx.user;
+
+  if (!user) {
+    throw new TRPCError({
+      message: "User not found",
+      code: "NOT_FOUND",
+    });
+  }
+
+  let preferredDate1Final: string,
+    preferredDate2Final: string | undefined,
+    preferredDate3Final: string | undefined;
+  preferredDate1Final = input.preferredDate1 + input.preferredTime1;
+
+  if (input.preferredDate2 && input.preferredTime2) {
+    preferredDate2Final = input.preferredDate2 + input.preferredTime2;
+  }
+
+  if (input.preferredDate3 && input.preferredTime3) {
+    preferredDate3Final = input.preferredDate3 + input.preferredTime3;
+  }
+
+  try {
+    await ctx.db.insert(oneOnOneRequests).values({
+      id: newId,
+      userId: user.id,
+      preferredDate1: preferredDate1Final,
+      preferredDate2: preferredDate2Final,
+      preferredDate3: preferredDate3Final,
+      notes: input.notes,
+    });
+
+    // Send email to coach
+    await sendMail("mateodixon@gmail.com", EmailTemplate.OneOnOneCoach, {
+      userEmail: user.email,
+      notes: input.notes,
+      preferredDate1: preferredDate1Final,
+      preferredDate2: preferredDate2Final,
+      preferredDate3: preferredDate3Final,
+    });
+
+    // Send email to user
+    await sendMail(user.email, EmailTemplate.OneOnOneUser, {
+      notes: input.notes,
+      preferredDate1: preferredDate1Final,
+      preferredDate2: preferredDate2Final,
+      preferredDate3: preferredDate3Final,
+    });
+
+    return {
+      success: true,
+      message: "One on one request sent",
+    };
+  } catch (error) {
+    console.error("Failed to insert one on one request", error);
+    throw new TRPCError({
+      message: "Failed to insert one on one request",
+      code: "INTERNAL_SERVER_ERROR",
+    });
+  }
+}
 
 async function getUserProfile({ ctx }: { ctx: ProtectedTRPCContext }) {
   const user = ctx.user;
@@ -367,8 +452,6 @@ async function userHasCourse({
       console.log("User does not have course");
       return { hasCourse: false };
     }
-
-
 
     return { hasCourse: true };
   } catch (error) {

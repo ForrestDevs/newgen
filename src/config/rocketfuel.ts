@@ -1075,33 +1075,23 @@ export const sampleWorkouts = [
     description: "Warmup (10 mins): Skipping + Hip isometrics",
     table: [
       {
-        title: "Plyos",
+        title: "Broad Jump",
         sets: "2",
-        reps: "",
-      },
-      {
-        title: "Broad jump",
-        sets: "",
         reps: "5",
       },
       {
         title: "Double Knee to Broad jump",
-        sets: "",
+        sets: "2",
         reps: "5",
       },
       {
-        title: "Speed",
-        sets: "",
-        reps: "",
-      },
-      {
         title: "Fall fwd sprint",
-        sets: "",
+        sets: "2",
         reps: "2 each leg",
       },
       {
-        title: "Push up sprint",
-        sets: "",
+        title: "Pushup sprint",
+        sets: "2",
         reps: "2 each leg",
       },
     ],
@@ -1111,34 +1101,24 @@ export const sampleWorkouts = [
     description: "Warmup (10 mins): Vertical Pogos + Toes elevated squat",
     table: [
       {
-        title: "Plyos",
-        sets: "2",
-        reps: "",
-      },
-      {
         title: "Triple Broad Jump",
-        sets: "",
+        sets: "2",
         reps: "4",
       },
       {
         title: "SL double broad jump",
-        sets: "",
+        sets: "2",
         reps: "2 each leg",
       },
       {
-        title: "Speed",
-        sets: "",
-        reps: "",
-      },
-      {
-        title: "Crossover Sprint",
-        sets: "",
+        title: "Cross over to sprint",
+        sets: "2",
         reps: "2 each side",
       },
       {
-        title: "Shuffle - stop - sprint",
-        sets: "",
-        reps: "2 each leg",
+        title: "Shuffle stop sprint",
+        sets: "2",
+        reps: "2 each side",
       },
     ],
   },
@@ -1147,33 +1127,23 @@ export const sampleWorkouts = [
     description: "Warmup (10 mins): Hurdles + Wall Ankle Pumps",
     table: [
       {
-        title: "Plyos",
-        sets: "3",
-        reps: "",
-      },
-      {
         title: "Double Leg Vertical Depth Jump",
-        sets: "",
+        sets: "3",
         reps: "4",
       },
       {
-        title: "SL Depth Jump",
-        sets: "",
-        reps: "2 each side",
+        title: "Single Leg Vertical Depth Jump",
+        sets: "3",
+        reps: "2 each leg",
       },
       {
-        title: "Sprints",
-        sets: "",
-        reps: "",
-      },
-      {
-        title: "Fwd Lunge sprint",
-        sets: "",
+        title: "Fwd Lunge to sprint",
+        sets: "3",
         reps: "2 each leg",
       },
       {
         title: "Curve Sprint",
-        sets: "",
+        sets: "3",
         reps: "2",
       },
     ],
@@ -1183,33 +1153,23 @@ export const sampleWorkouts = [
     description: "Warmup (10 mins): Half Kneeling ankle leans + Lateral Pogos",
     table: [
       {
-        title: "Plyos",
+        title: "Single Leg Fwd to Lateral hop",
         sets: "3",
-        reps: "",
-      },
-      {
-        title: "SL fwd to lateral hop",
-        sets: "",
         reps: "2 each leg",
       },
       {
         title: "Knee to double broad jump",
-        sets: "",
+        sets: "3",
         reps: "5",
       },
       {
-        title: "Sprints",
-        sets: "",
-        reps: "",
-      },
-      {
         title: "Bakpedal start",
-        sets: "",
+        sets: "3",
         reps: "2 each leg",
       },
       {
         title: "Half Kneeling (HK) lateral start",
-        sets: "",
+        sets: "3",
         reps: "2 each leg",
       },
     ],
@@ -1219,33 +1179,23 @@ export const sampleWorkouts = [
     description: "Warmup (10 mins): side to side pogos + hip isometrics",
     table: [
       {
-        title: "Plyos",
-        sets: "3",
-        reps: "",
-      },
-      {
         title: "Knee to SL double jump",
-        sets: "",
+        sets: "3",
         reps: "2 each side",
       },
       {
         title: "Weighted board jump",
-        sets: "",
+        sets: "3",
         reps: "5",
       },
       {
-        title: "Sprints",
-        sets: "",
-        reps: "",
-      },
-      {
         title: "Push up to sprint",
-        sets: "",
+        sets: "3",
         reps: "3",
       },
       {
         title: "Crossover start to sprint",
-        sets: "",
+        sets: "3",
         reps: "2 each side",
       },
     ],

@@ -95,7 +95,7 @@ export function UserNav({ user, session }: UserNavProps) {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem className="hover:cursor-pointer" asChild>
-            <Link href="/account" className="flex items-center">
+            <Link href="/settings" className="flex items-center">
               <GearIcon className="w-4 h-4 mr-3 text-muted-foreground" />
               Settings
             </Link>

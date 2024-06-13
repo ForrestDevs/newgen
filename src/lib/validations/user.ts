@@ -5,14 +5,13 @@ export const successSchema = z.object({
   message: z.string(),
 });
 
-
 export const userProfileQuerySchema = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    birthday: z.string(),
-    hockeyLevel: z.string(),
-    location: z.string(),
-})
+  firstName: z.string(),
+  lastName: z.string(),
+  birthday: z.string(),
+  hockeyLevel: z.string(),
+  location: z.string(),
+});
 
 export const waitlistSchema = z.object({
   email: z.string().email(),
@@ -73,3 +72,15 @@ export const userHasCourseQuerySchema = z.object({
 });
 
 export type UserHasCourseQueryOutput = z.infer<typeof userHasCourseQuerySchema>;
+
+export const requestOneonOneInputSchema = z.object({
+  preferredTime1: z.string(),
+  preferredTime2: z.string().optional(),
+  preferredTime3: z.string().optional(),
+  preferredDate1: z.string(),
+  preferredDate2: z.string().optional(),
+  preferredDate3: z.string().optional(),
+  notes: z.string(),
+});
+
+export type RequestOneonOneInput = z.infer<typeof requestOneonOneInputSchema>;

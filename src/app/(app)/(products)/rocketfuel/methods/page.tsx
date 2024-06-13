@@ -62,7 +62,7 @@ export default function Applications() {
         <section id="insights" className="space-y-10">
           <div>
             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-              Key Insights
+              Key Insights 🔑
             </h2>
             <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
               Top off your training with these extra tips to ensure you maximize

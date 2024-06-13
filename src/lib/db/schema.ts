@@ -63,6 +63,22 @@ export const userPurchases = pgTable("user_purchases", {
   ),
 });
 
+export const oneOnOneRequests = pgTable("one_on_one_requests", {
+  id: varchar("id", { length: 21 }).primaryKey(),
+  userId: varchar("user_id", { length: 21 })
+    .notNull()
+    .references(() => users.id),
+  preferredDate1: varchar("preferred_date_1", { length: 255 }).notNull(),
+  preferredDate2: varchar("preferred_date_2", { length: 255 }),
+  preferredDate3: varchar("preferred_date_3", { length: 255 }),
+  notes: text("message").notNull(),
+  accepted: boolean("accepted").default(false).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at", { mode: "date" }).$onUpdate(
+    () => new Date()
+  ),
+});
+
 export const userSurveyResponses = pgTable("user_survey_responses", {
   id: varchar("id", { length: 21 }).primaryKey(),
   userId: varchar("user_id", { length: 21 })
