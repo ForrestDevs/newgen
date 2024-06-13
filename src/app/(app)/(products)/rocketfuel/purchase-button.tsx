@@ -19,6 +19,7 @@ import { api } from "@/lib/trpc/react";
 import { Loader } from "lucide-react";
 import ShineBorder from "@/components/ui/shine-button";
 import { env } from "@/lib/env.mjs";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ProButton() {
   const stripePromise = getStripe();
@@ -64,9 +65,11 @@ export default function ProButton() {
           Purchase Rocket Fuel Speed Kit
         </DialogTitle>
         {clientSecret ? (
-          <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
-            <EmbeddedCheckout className="max-h-[80dvh]" />
-          </EmbeddedCheckoutProvider>
+          <ScrollArea className="p-4">
+            <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
+              <EmbeddedCheckout className="max-h-[80dvh]" />
+            </EmbeddedCheckoutProvider>
+          </ScrollArea>
         ) : (
           <Loader />
         )}

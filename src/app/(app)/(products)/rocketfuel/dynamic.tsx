@@ -25,17 +25,17 @@ export function Dynamic() {
     return <Skeleton />;
   }
 
-  //   return <Purchase />;
-
-  if (!data?.hasCourse) {
-    console.log("User does not have course access");
     return <Purchase />;
-  }
 
-  if (data.hasCourse) {
-    console.log("User has course access");
-    return <Dashboard />;
-  }
+  // if (!data?.hasCourse) {
+  //   console.log("User does not have course access");
+  //   return <Purchase />;
+  // }
+
+  // if (data.hasCourse) {
+  //   console.log("User has course access");
+  //   return <Dashboard />;
+  // }
 }
 
 function Purchase() {
