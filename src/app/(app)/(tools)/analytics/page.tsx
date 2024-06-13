@@ -1,9 +1,7 @@
-import { PageShell } from "@/components/layout/app/app-page-shell";
+import { ContentLayout } from "@/components/admin-panel/content-layout";
 
 export default async function AnalyticsPage() {
   return (
-    <PageShell>
-      Analytics Page Coming Soon!
-    </PageShell>
+    <ContentLayout title="Analytics">Analytics Page Coming Soon!</ContentLayout>
   );
 }

@@ -1,9 +1,9 @@
-import { PageShell } from "@/components/layout/app/app-page-shell";
+import { ContentLayout } from "@/components/admin-panel/content-layout";
 
 export default async function JournalPage() {
   return (
-    <PageShell>
+    <ContentLayout title="Journal">
       Journal Page Coming Soon!
-    </PageShell>
+    </ContentLayout>
   );
 }

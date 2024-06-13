@@ -1,9 +1,7 @@
-import { PageShell } from "@/components/layout/app/app-page-shell";
+import { ContentLayout } from "@/components/admin-panel/content-layout";
 
 export default async function CalendarPage() {
   return (
-    <PageShell>
-      Calendar Page Coming Soon!
-    </PageShell>
+    <ContentLayout title="Calendar">Calendar Page Coming Soon!</ContentLayout>
   );
 }

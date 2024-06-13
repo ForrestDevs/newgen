@@ -1,5 +1,5 @@
-import { PageShell } from "@/components/layout/app/app-page-shell";
+import { ContentLayout } from "@/components/admin-panel/content-layout";
 
 export default async function OffSeason() {
-  return <PageShell>Off Season Blueprint Page Coming Soon!</PageShell>;
+  return <ContentLayout title="Off Season">Off Season Blueprint Page Coming Soon!</ContentLayout>;
 }

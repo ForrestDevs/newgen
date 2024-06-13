@@ -1,5 +1,4 @@
 import { validateRequest } from "@/lib/auth/validate-request";
-import { AppShell } from "@/components/layout/app/app-shell";
 import AdminPanelLayout from "@/components/admin-panel/admin-panel-layout";
 
 export default async function AppLayout({

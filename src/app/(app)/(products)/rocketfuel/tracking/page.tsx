@@ -1,12 +1,4 @@
-import { Button } from "@/components/ui/button";
 import BackButton from "@/components/back-button";
-import {
-  BoltIcon,
-  ClipboardIcon,
-  RulerIcon,
-  TimerIcon,
-  VideoIcon,
-} from "lucide-react";
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import { trackingMethods, whenToTrack } from "@/config/rocketfuel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

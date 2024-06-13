@@ -1,13 +1,5 @@
-import { PageShell } from "@/components/layout/app/app-page-shell";
-import { Button } from "@/components/ui/button";
+
 import BackButton from "@/components/back-button";
-import {
-  BoltIcon,
-  ClipboardIcon,
-  RulerIcon,
-  TimerIcon,
-  VideoIcon,
-} from "lucide-react";
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {

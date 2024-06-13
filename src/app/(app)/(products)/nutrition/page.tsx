@@ -1,9 +1,9 @@
-import { PageShell } from "@/components/layout/app/app-page-shell";
+import { ContentLayout } from "@/components/admin-panel/content-layout";
 
 export default async function Nutrition() {
   return (
-    <PageShell>
+    <ContentLayout title="Nutrition">
       Nutrition Page Coming Soon!
-    </PageShell>
+    </ContentLayout>
   );
 }

@@ -1,11 +1,10 @@
-import { validateRequest } from "@/lib/auth/validate-request";
-import { PageShell } from "@/components/layout/app/app-page-shell";
 import { Component } from "./component";
+import { ContentLayout } from "@/components/admin-panel/content-layout";
 
 export default async function Settings() {
   return (
-    <PageShell>
+    <ContentLayout title="Settings">
       <Component />
-    </PageShell>
+    </ContentLayout>
   );
 }
