@@ -16,6 +16,7 @@ import { dashboardLinks, whatsIncluded } from "@/config/rocketfuel";
 import { cn } from "@/lib/utils";
 
 export function Dynamic() {
+
   const { data, isLoading } = api.user.userHasCourse.useQuery({
     courseId: "prr4ngd4e9nggnhzag6a0",
   });
@@ -25,17 +26,17 @@ export function Dynamic() {
     return <Skeleton />;
   }
 
+    // return <Purchase />;
+
+  if (!data?.hasCourse) {
+    console.log("User does not have course access");
     return <Purchase />;
+  }
 
-  // if (!data?.hasCourse) {
-  //   console.log("User does not have course access");
-  //   return <Purchase />;
-  // }
-
-  // if (data.hasCourse) {
-  //   console.log("User has course access");
-  //   return <Dashboard />;
-  // }
+  if (data.hasCourse) {
+    console.log("User has course access");
+    return <Dashboard />;
+  }
 }
 
 function Purchase() {
