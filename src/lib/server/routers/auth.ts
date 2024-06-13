@@ -88,12 +88,19 @@ async function logout({ ctx }: { ctx: ProtectedTRPCContext }) {
   }
   await lucia.invalidateSession(session.id);
   const sessionCookie = lucia.createBlankSessionCookie();
-  cookies().set(
-    sessionCookie.name,
-    sessionCookie.value,
-    sessionCookie.attributes
-  );
-  return { redirect: Paths.Login };
+  try {
+    cookies().set(
+      sessionCookie.name,
+      sessionCookie.value,
+      sessionCookie.attributes
+    );
+    return { redirect: Paths.Login };
+  } catch (error) {
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "Failed to set session cookie",
+    });
+  }
 }
 
 async function login({ input }: { input: LoginInput }) {
@@ -315,7 +322,6 @@ async function createProfile({
       message: "Failed to create profile",
     });
   }
-
 
   return { redirect: Paths.IntroSurvey };
 }

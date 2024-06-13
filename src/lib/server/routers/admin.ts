@@ -23,6 +23,9 @@ import { TRPCError } from "@trpc/server";
 
 export const adminRouter = createTRPCRouter({
   generateId: publicProcedure.output(z.string()).mutation(() => generateId(21)),
+  listProducts: protectedProcedure
+    // .output(z.array(z.object(products)))
+    .query(({ ctx }) => listProducts({ ctx })),
   createProduct: protectedProcedure
     .input(createProductSchema)
     .output(successSchema)
@@ -43,6 +46,11 @@ export const adminRouter = createTRPCRouter({
     .output(successSchema)
     .mutation(({ input, ctx }) => deleteCourse({ input, ctx })),
 });
+
+async function listProducts({ ctx }: { ctx: ProtectedTRPCContext }) {
+  const res = await ctx.db.select().from(products).execute();
+  return res;
+}
 
 async function createProduct({
   input,

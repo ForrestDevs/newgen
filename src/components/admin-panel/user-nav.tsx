@@ -37,11 +37,10 @@ export function UserNav({ user, session }: UserNavProps) {
   const logoutMutation = api.auth.logout.useMutation({
     onMutate: () => {
       toast.info("Logging out...");
-      router.push("/login");
     },
     onSuccess: (data) => {
       toast.success("Logged out");
-      // router.push(data.redirect);
+      router.push(data.redirect);
     },
     onError: (err) => {
       toast.error(err.message);
