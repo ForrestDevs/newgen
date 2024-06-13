@@ -157,6 +157,109 @@ export const keyInsights = [
   },
 ];
 
+export const methods = [
+  {
+    title: "Strength Method",
+    img: "/strengthImg.webp",
+    lines: [
+      {
+        content:
+          "Heavy Lifting: Lifting heavy weights (typically 75-85% of one's maximum lift) for fewer repetitions can stimulate Type II muscle fibers.",
+      },
+      {
+        content:
+          "Explosive Lifting: Movements like power cleans, snatch, and push press activate fast-twitch fibers due to the rapid acceleration required.",
+      },
+    ],
+  },
+  {
+    title: "Velocity-Acceleration Method",
+    img: "/velocityImg.webp",
+    lines: [
+      {
+        content:
+          "Max-Effort Sprints: Short, intense bursts of running at full effort.",
+      },
+      {
+        content:
+          "Vertical Jumps: Jumping as high as possible from a standing position.",
+      },
+      {
+        content:
+          "Broad Jumps: Jumping as far as possible from a standing position.",
+      },
+      {
+        content:
+          "Bounds: Repeated jumps focusing on a fast and smooth transition between each jump.",
+      },
+      {
+        content:
+          "Jumps with a Countermovement: Utilizing a quick squat motion before jumping to maximize ground force reaction.",
+      },
+      {
+        content:
+          "Sprint Training: Short sprints up to 10 seconds to maximize recruitment of Type IIb muscle fibers, which are crucial for explosive movements.",
+      },
+      {
+        content:
+          "Plyometrics: Includes exercises like jump squats, box jumps, and bounds. Aims to improve explosive power and speed by activating fast-twitch muscle fibers.",
+      },
+    ],
+  },
+  {
+    title: "Power (speed-strength) Method",
+    img: "/powerImg.webp",
+    lines: [
+      {
+        content:
+          "Apply Resistance to Speed Movements: Enhances fast movements combined with high force output. Forces the athlete to exert significant force. Encourages rapid reproduction of strength and force during the movement.",
+      },
+      {
+        content:
+          "Use lower percentages of your 1RM (55-70%) and try and move them as fast as possible",
+      },
+      {
+        content: "MedBall, Barbell",
+      },
+    ],
+  },
+  {
+    title: "Hip Joint Isometrics",
+    img: "/hipImg.webp",
+    lines: [
+      {
+        content:
+          "Engines of Body and Hockey: Critical for powering movements specific to hockey.",
+      },
+      {
+        content:
+          "Tendon Stiffness: Increases the ability of tendons to absorb and release energy efficiently.",
+      },
+      {
+        content:
+          "Neuromuscular Control: Enhances the coordination and control of muscle actions.",
+      },
+      {
+        content:
+          "Joint Stability: Improves the stability of hip joints, reducing the risk of injury.",
+      },
+      {
+        content:
+          "Force Development in End Ranges of Motion: Strengthens the muscles' ability to generate force at the limits of joint movement.",
+      },
+    ],
+  },
+  {
+    title: "Warmup / Elasticity Method",
+    img: "/elasticityImg.webp",
+    lines: [
+      {
+        content: "",
+      },
+    ],
+  },
+];
+
 export const speedCatalog = [
   {
     name: "Warmup/ Elasticity",
