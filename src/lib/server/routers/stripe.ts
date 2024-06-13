@@ -47,6 +47,7 @@ async function createCheckoutSession({
       .where(eq(products.stripePriceId, env.STRIPE_ROCKET_FUEL_PRICE_ID));
 
     if (product.length === 0) {
+      console.error("Product not found");
       throw new TRPCError({
         code: "NOT_FOUND",
         message: "Product not found.",
@@ -59,6 +60,7 @@ async function createCheckoutSession({
       .where(eq(courses.productId, product[0].id));
 
     if (course.length === 0) {
+      console.error("Course not found");
       throw new TRPCError({
         code: "BAD_REQUEST",
         message: "Course not found.",
@@ -99,6 +101,7 @@ async function createCheckoutSession({
       stripeCustomerId = customer.id;
     }
 
+    console.log("Creating checkout session for user", user.id);
     const checkoutSession = await stripe.checkout.sessions.create({
       metadata: {
         userId: user.id,
@@ -127,6 +130,7 @@ async function createCheckoutSession({
     const clientSecret = checkoutSession.client_secret;
 
     if (!clientSecret) {
+      console.error("Failed to create checkout session, no client secret");
       throw new Error("Failed to create checkout session.");
     }
 
@@ -135,6 +139,7 @@ async function createCheckoutSession({
       clientSecret: clientSecret,
     };
   } catch (err) {
+    console.error(err);
     throw new TRPCError({
       code: "INTERNAL_SERVER_ERROR",
       message: `Failed to create checkout session ${err}`,
