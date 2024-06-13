@@ -1,4 +1,4 @@
-import { subscriptionPlans } from "@/config/subscriptions";
+// import { subscriptionPlans } from "@/config/subscriptions";
 import { db } from "@/lib/db/index";
 // import { subscriptions } from "@/lib/db/schema/subscriptions";
 import { eq } from "drizzle-orm";
