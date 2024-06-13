@@ -12,22 +12,20 @@ import {
   ProtectedTRPCContext,
 } from "@/lib/server/trpc";
 import { courses, products, userPurchases } from "@/lib/db/schema";
-import { eq, and } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { api } from "@/lib/trpc/server";
 
 export const stripeRouter = createTRPCRouter({
   createCheckoutSession: protectedProcedure
-    .input(createCheckoutSessionSchema)
+    // .input(createCheckoutSessionSchema)
     .output(z.object({ success: z.boolean(), clientSecret: z.string() }))
-    .mutation(({ ctx, input }) => createCheckoutSession({ ctx, input })),
+    .mutation((ctx) => createCheckoutSession(ctx)),
 });
 
 async function createCheckoutSession({
-  ctx,
-  input,
+  ctx
 }: {
   ctx: ProtectedTRPCContext;
-  input: CreateCheckoutSessionInput;
 }) {
   const user = ctx.user;
 
@@ -40,11 +38,13 @@ async function createCheckoutSession({
 
   const userProfile = await api.user.getUserProfile.query();
 
+  console.log("Creating checkout session");
+
   try {
     const product = await ctx.db
       .select()
       .from(products)
-      .where(eq(products.stripePriceId, input.stripePriceId));
+      .where(eq(products.stripePriceId, env.STRIPE_ROCKET_FUEL_PRICE_ID));
 
     if (product.length === 0) {
       throw new TRPCError({
@@ -104,7 +104,7 @@ async function createCheckoutSession({
         userId: user.id,
         productId: product[0].id,
         courseId: course[0].id,
-        stripePriceId: input.stripePriceId,
+        stripePriceId: env.STRIPE_ROCKET_FUEL_PRICE_ID,
         stripeCustomerId: stripeCustomerId,
       },
       customer_update: {
@@ -115,7 +115,7 @@ async function createCheckoutSession({
       ui_mode: "embedded",
       line_items: [
         {
-          price: input.stripePriceId,
+          price: env.STRIPE_ROCKET_FUEL_PRICE_ID,
           quantity: 1,
         },
       ],

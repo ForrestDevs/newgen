@@ -18,6 +18,7 @@ import getStripe from "@/lib/stripe/get-stripe";
 import { api } from "@/lib/trpc/react";
 import { Loader } from "lucide-react";
 import ShineBorder from "@/components/ui/shine-button";
+import { env } from "@/lib/env.mjs";
 
 export default function ProButton() {
   const stripePromise = getStripe();
@@ -25,9 +26,7 @@ export default function ProButton() {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
 
   const handleCheckout = async (): Promise<void> => {
-    const res = await clientMutation.mutateAsync({
-      stripePriceId: "price_1PP7mnAU6rgRHRqqsZGA3JiO",
-    });
+    const res = await clientMutation.mutateAsync();
 
     if (!res.success) {
       console.error("Failed to get checkout id");

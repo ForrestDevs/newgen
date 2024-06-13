@@ -24,8 +24,6 @@ import { GearIcon } from "@radix-ui/react-icons";
 import { api } from "@/lib/trpc/react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { Paths } from "@/config/constants";
-import { useState } from "react";
 
 interface UserNavProps {
   user: User;
@@ -34,25 +32,16 @@ interface UserNavProps {
 
 export function UserNav({ user, session }: UserNavProps) {
   const router = useRouter();
-  // const [initials, setInitials] = useState("");
-
-  const { data: userProfile, isLoading } = api.user.getUserProfile.useQuery();
-
-  // if (!userProfile) {
-  //   return null;
-  // }
-
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
+  const { data: userProfile } = api.user.getUserProfile.useQuery();
 
   const logoutMutation = api.auth.logout.useMutation({
     onMutate: () => {
       toast.info("Logging out...");
+      router.push("/login");
     },
     onSuccess: (data) => {
       toast.success("Logged out");
-      router.push(data.redirect);
+      // router.push(data.redirect);
     },
     onError: (err) => {
       toast.error(err.message);
