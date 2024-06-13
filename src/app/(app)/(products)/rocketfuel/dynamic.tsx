@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 
 export function Dynamic() {
   const { data, isLoading } = api.user.userHasCourse.useQuery({
-    courseId: "kdisyxqg19iam3rd25s6m",
+    courseId: "prr4ngd4e9nggnhzag6a0",
   });
 
   if (isLoading) {
