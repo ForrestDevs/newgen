@@ -987,7 +987,7 @@ export const splitTable = [
     description: "Prepare body for workout.",
   },
   {
-    category: "Plyos",
+    category: "Plyometrics / Jumps",
     exercises: "2",
     sets: "2",
     reps: "4-6",

@@ -47,9 +47,8 @@ export default function Split() {
                 Workout Variations
               </h2>
               <p className="text-lg text-gray-500 dark:text-gray-400">
-                Each workout is part of an integrated approach, focusing on
-                conditioning, strength, and speed in varying amounts. Recommend
-                resting at least 2-3 days between each workout phase.
+                This program is versatile and can be easily integrated with any
+                existing training routines you may already have in place.
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-3">
@@ -118,12 +117,7 @@ export default function Split() {
                 {splitTable.map((row, i) => (
                   <TableRow key={i}>
                     <TableCell className="border-r border-gray-200 dark:border-gray-700">
-                      <div className="grid gap-1">
-                        <span className="font-bold">{row.category}</span>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
-                          {row.description}
-                        </p>
-                      </div>
+                      <p className="font-bold">{row.category}</p>
                     </TableCell>
                     <TableCell>{row.exercises}</TableCell>
                     <TableCell>{row.sets}</TableCell>

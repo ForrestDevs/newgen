@@ -108,7 +108,7 @@ export default function SpeedKitLanding() {
             </div>
             <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
               {theSience.map((item, i) => (
-                <div className="grid gap-1">
+                <div key={i} className="grid gap-1">
                   <h3 className="text-lg font-bold">{item.title}</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     {item.description}
