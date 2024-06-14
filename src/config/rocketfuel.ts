@@ -253,10 +253,7 @@ export const methods = [
       },
       {
         content:
-          "Use lower percentages of your 1RM (55-70%) and try and move them as fast as possible",
-      },
-      {
-        content: "MedBall, Barbell",
+          "Use lower percentages of your 1 rep max (55-70%) and try and move them as fast as possible.",
       },
     ],
   },
@@ -1095,12 +1092,12 @@ export const whenToTrack = [
       "Measure your broad jump distance at the start and end of each phase.",
   },
   {
-    title: "Post Phase 1",
+    title: "After Phase 1",
     description:
       "Measure your vertical jump height at the start and end of each phase.",
   },
   {
-    title: "Post Phase 2",
+    title: "After Phase 2",
     description: "Record your sprint time at the start and end of each phase.",
   },
 ];

@@ -20,12 +20,7 @@ export default function TrackingProgress() {
           </section>
 
           <section id="tracking" className="space-y-10">
-            <h2 className="text-3xl font-bold mb-4">Tracking Methods</h2>
-            <p className="text-gray-500 dark:text-gray-400 mb-6">
-              Choose from various tracking methods to monitor your fitness
-              progress.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {trackingMethods.map(({ title, description, icon: Icon }, i) => (
                 <Card key={i}>
                   <CardHeader>
@@ -48,7 +43,7 @@ export default function TrackingProgress() {
               Track your fitness progress at three different stages: baseline,
               after phase 1, and after phase 2.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {whenToTrack.map(({ title, description }, i) => (
                 <Card key={i}>
                   <CardHeader>
@@ -61,13 +56,14 @@ export default function TrackingProgress() {
           </section>
 
           <div className="flex flex-col justify-start rounded-md border-2 border-yellow-500 bg-yellow-100 p-4">
-            <h3 className="text-xl font-semibold text-yellow-600 dark:text-yellow-300">
+            <h3 className="text-xl font-semibold text-yellow-600">
               Progress Reward 🎉
             </h3>
 
-            <p className="text-lg text-gray-500 dark:text-gray-400 my-4">
-              If you show improvement in speed after three months, share your
-              results with us to receive a 10% discount on your next purchase.
+            <p className="text-lg text-gray-500 dark:text-black/60 my-4">
+              If you show improvement in speed after three months, send us an
+              email with your results to receive a 10% discount on your next
+              purchase.
             </p>
           </div>
         </div>
