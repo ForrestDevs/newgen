@@ -46,10 +46,7 @@ export default function TrackingProgress() {
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {whenToTrack.map(({ title, description }, i) => (
                 <Card key={i}>
-                  <CardHeader>
-                    <CardTitle>{title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>{description}</CardContent>
+                  <CardContent className="text-lg font-bold p-4">{title}</CardContent>
                 </Card>
               ))}
             </div>

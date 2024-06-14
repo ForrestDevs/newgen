@@ -1092,16 +1092,16 @@ export const whenToTrack = [
   {
     title: "Baseline",
     description:
-      "Measure your broad jump distance at the start and end of each phase.",
+      "",
   },
   {
     title: "After Phase 1",
     description:
-      "Measure your vertical jump height at the start and end of each phase.",
+      "",
   },
   {
     title: "After Phase 2",
-    description: "Record your sprint time at the start and end of each phase.",
+    description: "",
   },
 ];
 
