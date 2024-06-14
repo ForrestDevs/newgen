@@ -11,6 +11,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { cookies } from "next/headers";
 import { Analytics } from "@vercel/analytics/react";
 import { TailwindIndicator } from "@/components/tailwind-size";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: {
@@ -52,6 +53,7 @@ export default function RootLayout({
           <TailwindIndicator />
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

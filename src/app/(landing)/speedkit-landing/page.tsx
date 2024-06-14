@@ -51,7 +51,7 @@ export default function SpeedKitLanding() {
                 Mateo Dixon personally uses to enhance speed and explosiveness.
               </p>
             </div>
-            <Link href="/login">
+            <Link href="/signup">
               <ShineBorder
                 className="text-center text-2xl font-bold capitalize bg-gradient-to-br from-amber-300/80 via-orange-500/80 to-red-700/80"
                 color={["#b91c1c", "#b91c1c", "#b91c1c"]}
@@ -153,7 +153,7 @@ export default function SpeedKitLanding() {
               </h2>
             </div>
             <div className="flex items-center justify-center">
-              <Link href="/login">
+              <Link href="/signup">
                 <ShineBorder
                   className="text-center text-2xl font-bold capitalize bg-gradient-to-br from-amber-300/80 via-orange-500/80 to-red-700/80"
                   color={["#b91c1c", "#b91c1c", "#b91c1c"]}
