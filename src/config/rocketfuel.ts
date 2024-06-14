@@ -80,6 +80,9 @@ export const theSience = [
 
 export const whatsIncluded = [
   {
+    title: "3-month speed development program",
+  },
+  {
     title: "Over 55 strategic exercises",
   },
   {
@@ -107,7 +110,7 @@ export const whatsIncluded = [
     title: "How to track your progress and training gains",
   },
   {
-    title: "Custom 3-month summer speed program (available on request)",
+    title: "Custom 3-month speed program tailored to you (available on request)",
   },
 ];
 

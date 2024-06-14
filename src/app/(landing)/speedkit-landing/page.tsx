@@ -70,7 +70,7 @@ export default function SpeedKitLanding() {
                   What&apos;s Included
                 </h1>
                 <p className="mt-4 text-gray-500 dark:text-gray-400 md:text-xl">
-                  Unlock your full speed potential with our expert-designed
+                  Unlock your full speed potential with our specialized
                   program.
                 </p>
               </div>
