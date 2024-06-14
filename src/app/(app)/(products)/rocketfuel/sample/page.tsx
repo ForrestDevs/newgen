@@ -1,4 +1,3 @@
-
 import BackButton from "@/components/back-button";
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -57,16 +56,16 @@ export default function SampleWorkout() {
         </div>
 
         <div className="flex flex-col justify-start rounded-md border-2 border-yellow-500 bg-yellow-100 p-4">
-          <h3 className="text-xl font-semibold text-yellow-600 dark:text-yellow-300">
+          <h3 className="text-xl font-semibold text-yellow-600">
             Disclaimer ⚠️
           </h3>
 
-          <p className="text-lg text-gray-500 dark:text-gray-400 my-4">
+          <p className="text-lg text-gray-500 dark:text-black/60 my-4">
             For workout 3, swap out the sprints for different loaded
             acceleration (hills, sleds, or band).
           </p>
-          <p className="text-lg text-gray-500 dark:text-gray-400 my-4">
-            For day 2, you are almost using all the exercises in the power
+          <p className="text-lg text-gray-500 dark:text-black/60 my-4">
+            For workout 2, you are almost using all the exercises in the power
             exercise log.
           </p>
         </div>
