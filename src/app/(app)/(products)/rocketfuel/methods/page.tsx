@@ -9,38 +9,25 @@ export default function Applications() {
   return (
     <ContentLayout title="Methods">
       <BackButton />
-      <div className="space-y-24">
-        <section
-          id="title"
-          className="w-full rounded-lg bg-white py-12 md:py-24 lg:py-32 space-y-10"
-        >
-          <div className="container space-y-6 px-4 md:px-6">
-            <div className="space-y-3 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-                The 5 Methodologies of Our Speed Program
-              </h2>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Unlock your full potential with our comprehensive speed program,
-                designed to help you achieve your goals faster and more
-                efficiently.
-              </p>
-            </div>
-          </div>
-        </section>
+      <div className="w-full max-w-4xl mx-auto px-4 md:px-6 py-8">
+        <div className="flex flex-col space-y-20">
+          <section id="Intro" className="space-y-10">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Training Tactics
+            </h1>
+            <p className="text-lg text-gray-500 dark:text-gray-400">
+              Explore the effective methods behind our approach to enhancing
+              strength, speed, power, and muscle elasticity.
+            </p>
+          </section>
 
-        <section id="methods" className="space-y-10">
-          {methods.map((method, i) => (
-            <div
-              className={`w-full p-4 rounded-lg ${
-                i % 2 === 0 ? "bg-gray-100" : "bg-white"
-              } ${i % 2 === 0 ? "dark:bg-black/50" : ""}`}
-              key={i}
-            >
-              <div className="space-y-8 p-8">
-                <h3 className="text-2xl font-bold tracking-tighter md:text-3xl/tight">
-                  Methodology {i + 1}: {method.title}
+          <section id="methods" className="space-y-10">
+            {methods.map((method, i) => (
+              <div key={i} className="mb-10">
+                <h3 className="text-2xl font-bold tracking-tighter md:text-3xl/tight mb-8">
+                  {method.title}
                 </h3>
-                <div className="flex flex-col justify-center lg:flex-row gap-4">
+                <div className="flex flex-col justify-center lg:flex-row gap-12">
                   <ul className="space-y-4 list-disc">
                     {method.lines.map((line, i) => (
                       <li key={i}>{line.content}</li>
@@ -55,39 +42,56 @@ export default function Applications() {
                   />
                 </div>
               </div>
-            </div>
-          ))}
-        </section>
+            ))}
+          </section>
 
-        <section id="insights" className="space-y-10">
-          <div>
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-              Key Insights 🔑
-            </h2>
-            <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-              Top off your training with these extra tips to ensure you maximize
-              your gains.
-            </p>
-          </div>
-          {keyInsights.map((insight, i) => (
-            <Card
-              key={i}
-              className="bg-gray-100 dark:bg-black/50 p-8 flex justify-start" // Change justify-center to justify-start
-            >
-              <div className="flex items-start">
-                <div className="h-full border-l-4 border-gray-900 dark:border-gray-100 mr-4" />
-                <blockquote className="text-lg font-medium text-gray-900 dark:text-white/75">
-                  {insight.lines.map((line, i) => (
-                    <p key={i} className="text-gray-600 dark:text-gray-400">
-                      {line}
-                    </p>
-                  ))}
-                </blockquote>
-              </div>
-            </Card>
-          ))}
-        </section>
+          <section id="insights" className="space-y-10">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                Key Insights 🔑
+              </h2>
+              <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                Top off your training with these extra tips to ensure you
+                maximize your gains.
+              </p>
+            </div>
+            {keyInsights.map((insight, i) => (
+              <Card
+                key={i}
+                className="bg-gray-100 dark:bg-black/50 p-8 flex justify-start" // Change justify-center to justify-start
+              >
+                <div className="flex items-start">
+                  <div className="h-full border-l-4 border-gray-900 dark:border-gray-100 mr-4" />
+                  <blockquote className="text-lg font-medium text-gray-900 dark:text-white/75">
+                    {insight.lines.map((line, i) => (
+                      <p key={i} className="text-gray-600 dark:text-gray-400">
+                        {line}
+                      </p>
+                    ))}
+                  </blockquote>
+                </div>
+              </Card>
+            ))}
+          </section>
+        </div>
       </div>
+
+      {/* <div className="space-y-24"> */}
+      {/* <section
+          id="title"
+          className="w-full rounded-lg bg-white py-12 md:py-24 lg:py-32 space-y-10"
+        >
+          <div className="container space-y-6 px-4 md:px-6">
+            <div className="space-y-3 text-center">
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                Training Tactics
+              </h2>
+              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"></p>
+            </div>
+          </div>
+        </section> */}
+
+      {/* </div> */}
     </ContentLayout>
   );
 }

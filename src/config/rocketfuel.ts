@@ -254,7 +254,12 @@ export const methods = [
     img: "/elasticityImg.webp",
     lines: [
       {
-        content: "",
+        content:
+          "Elasticity exercises like pogo jumps rapidly improve your muscle's ability to contract and release energy quickly, crucial for increasing sprint speed and agility. They also serve as a warmup to the more demanding exercises.",
+      },
+      {
+        content:
+          "Optimizing Quick Movements: By focusing on the elasticity of your muscles and tendons, these drills train your body to react faster and with more power, enabling you to achieve higher speeds in competitive situations.",
       },
     ],
   },
@@ -873,7 +878,7 @@ export const phases = [
     title: "Phase 2",
     duration: "(6 to 8 weeks)",
     description:
-      "In this phase, you'll shift focus to power, emphasizing speed and explosiveness. You'll use the strength gains from Phase 1 to train for generating higher force more quickly. Now, you're ready to increase the volume and level of your exercise variations, pushing your abilities further.",
+      "The max strength phase is complete, so in terms of weightlifting, it's time to shift focus to building power. This means decreasing the weight and moving it as quickly as possible—normal movements such as squats, deadlifts, and cleans should be at 50%-70% of your one-rep max. Additionally, we'll introduce acceleration-based sprints, such as uphill, sled, or banded sprints, to add resistance to your speed training.",
     exerciseSplit: [
       {
         title: "Speed",
@@ -893,45 +898,39 @@ export const phases = [
     ],
     keyElements: [
       {
-        point: "High-quality reps",
+        point:
+          "High-Quality Reps: Focus on intense, maximal efforts with every repetition.",
       },
       {
         point:
-          "Begin to increase the intensity and variation of speed exercises",
+          "Add resistance to sprints: Incorporate tools like sleds or a hill into your sprint variations.",
       },
       {
-        point: "Start to add resistance to some sprints ",
+        point:
+          "Increase Variation: Start adding more challenging speed exercise variations.",
       },
       {
-        point: "Workout 1, 2 and 3 for speed are now all active",
+        point:
+          "All speed workouts active: Workouts 1, 2, and 3 for speed are now in full swing.",
       },
     ],
-    messages: [
-      {
-        content:
-          "High levels of speed can only be achieved after maximum strength and power are highly developed. If your relative strength increases, your body moves quicker with less effort.",
-      },
-      {
-        content:
-          "Use your trainer or a gym to perform your strength training ensuring proper technique, safety and execution.",
-      },
-    ],
+    messages: [],
     exampleWeekly: [
       {
         day: "Monday",
-        workout: "Speed",
+        workout: "Speed (1)",
       },
       {
         day: "Tuesday",
-        workout: "Med Ball Power",
+        workout: "Med Ball Power (2)",
       },
       {
         day: "Wednesday",
-        workout: "Strength",
+        workout: "Strength (Move lighter weight fast)",
       },
       {
         day: "Thursday",
-        workout: "Speed",
+        workout: "Speed (3)",
       },
       {
         day: "Friday",
