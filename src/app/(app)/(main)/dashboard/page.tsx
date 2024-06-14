@@ -21,7 +21,7 @@ const sections = [
         pic: "/rocketfuellogo.png",
       },
       {
-        title: "Off Season",
+        title: "Off Season Blueprint",
         description: "Coming Soon!",
         href: "/offseason",
         pic: "/offSeasonlogo.png",
@@ -72,7 +72,7 @@ export default async function Home() {
         <section id="header">
           <div className="flex flex-col items-center gap-4 text-center">
             <h1 className="text-3xl font-bold md:text-4xl">
-              Welcome back, {(await userProfile).firstName}
+              Welcome back, {(await userProfile).firstName}!
             </h1>
             <p className="text-gray-500 dark:text-gray-400 md:text-lg">
               Let&apos;s dive into your dashboard and see what&apos;s new.
@@ -92,22 +92,19 @@ export default async function Home() {
                   href={card.href}
                   className="hover:scale-[1.03] transition-all"
                 >
-                  <Card key={i}>
+                  <Card key={i} className="flex flex-col justify-center items-center min-h-60">
                     <CardHeader>
                       <CardTitle>{card.title}</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="flex flex-col items-center justify-center">
                       <Image
                         src={card.pic}
                         alt={card.title}
                         width={200}
                         height={200}
-                        className="object-cover"
+                        className="object-cover rounded-full"
                       />
                     </CardContent>
-                    <CardFooter>
-                      <p>{card.description}</p>
-                    </CardFooter>
                   </Card>
                 </Link>
               ))}

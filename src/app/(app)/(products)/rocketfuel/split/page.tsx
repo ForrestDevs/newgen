@@ -34,11 +34,10 @@ export default function Split() {
               The Exercise Split
             </h1>
             <p className="text-lg text-gray-500 dark:text-gray-400">
-              Embrace a science-based approach to enhance your speed and
-              explosive power. This plan includes comprehensive workouts,
-              essential principles, key insights, and instructional videos. The
-              split consists of 5 daily workouts, each with a 10-minute, 2 phase
-              plan.
+              This speed training plan will help you get faster in the next few
+              months. It lays out how many exercises you&apos;ll do, how often
+              you&apos;ll do them, and how you&apos;ll increase your efforts as
+              time goes on.
             </p>
           </section>
 
@@ -134,15 +133,13 @@ export default function Split() {
               </TableBody>
             </Table>
             <p className="text-lg text-gray-500 dark:text-gray-400">
-              Click
-              {" "}
+              Click{" "}
               <Link
                 href="/rocketfuel/movements"
                 className="text-lg text-blue-500 dark:text-blue-400"
               >
                 here
-              </Link>
-              {" "}
+              </Link>{" "}
               to visit the movement catelog and see all recommended exercises
               plus video demonstrations.
             </p>
@@ -171,35 +168,22 @@ export default function Split() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="grid gap-6">
-                    <div className="grid grid-cols-[auto_1fr] items-center gap-4">
-                      <PiGaugeBold className="h-8 w-8 text-primary" />
-                      <div>
-                        <p className="text-lg font-medium">Speed</p>
-                        <p className="text-base text-gray-500 dark:text-gray-400">
-                          2 workouts per week (only workout 1)
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-[auto_1fr] items-center gap-4">
-                      <TbStretching className="h-8 w-8 text-primary" />
-                      <div>
-                        <p className="text-lg font-medium">
-                          Hip Isometrics, Ankle
-                        </p>
-                        <p className="text-base text-gray-500 dark:text-gray-400">
-                          3-4 workouts per week
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-[auto_1fr] items-center gap-4">
-                      <PiBarbellBold className="h-8 w-8 text-primary" />
-                      <div>
-                        <p className="text-lg font-medium">Max Strength</p>
-                        <p className="text-base text-gray-500 dark:text-gray-400">
-                          2-3 workouts per week
-                        </p>
-                      </div>
-                    </div>
+                    {section.exerciseSplit.map(
+                      ({ title, description, logo: Icon }, i) => (
+                        <div
+                          key={i}
+                          className="grid grid-cols-[auto_1fr] items-center gap-4"
+                        >
+                          <Icon className="h-8 w-8 text-primary" />
+                          <div>
+                            <p className="text-lg font-medium">{title}</p>
+                            <p className="text-base text-gray-500 dark:text-gray-400">
+                              {description}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    )}
                   </CardContent>
                 </Card>
               </section>
@@ -216,7 +200,7 @@ export default function Split() {
               </section>
 
               <section id={section.title + "key points"}>
-                <Card className="bg-gray-100 dark:bg-gray-800 p-6">
+                <Card className="bg-gray-100 dark:bg-black/60 p-6">
                   <h3 className="text-2xl font-bold">Key Points 🔑</h3>
                   <ul className="mt-4 space-y-2 text-gray-500 dark:text-gray-400 list-disc pl-4">
                     {section.keyElements.map((element, i) => (
@@ -268,14 +252,14 @@ export default function Split() {
                   className="space-y-4"
                 >
                   <div className="flex flex-col justify-start rounded-md border-2 border-yellow-500 bg-yellow-100 p-4">
-                    <h3 className="text-xl font-semibold text-yellow-600 dark:text-yellow-300">
+                    <h3 className="text-xl font-semibold text-yellow-600">
                       Disclaimer ⚠️
                     </h3>
 
                     {section.disclaimers.map((disclaimer, i) => (
                       <p
                         key={i}
-                        className="text-lg text-gray-500 dark:text-gray-400 my-4"
+                        className="text-lg text-gray-500 dark:text-black/60 my-4"
                       >
                         {disclaimer.content}
                       </p>

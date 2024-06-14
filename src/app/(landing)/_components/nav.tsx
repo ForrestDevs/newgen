@@ -17,28 +17,22 @@ import {
 
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Speed Kit",
+    title: "Rocket Fuel Speed Kit",
     href: "/speedkit-landing",
     description:
-      "Our comprehensive speed development program designed to 10x your speed performance and create genetic rocket fuel.",
+      "Rocket Fuel Speed Kit is grounded in scientific principals that Mateo Dixon personally uses to enhance speed and explosiveness.",
   },
   {
     title: "Off Season Blueprint",
     href: "/offseason-landing",
     description:
-      "Our comprehensive off-season program designed to help you build muscle, strength, and power.",
-  },
-  {
-    title: "Nutrition Guide",
-    href: "/nutrition-landing",
-    description:
-      "A pro-level nutrition guide to help you build muscle, lose fat, and perform better.",
+      "Specialized off-season blueprint for maximal development.",
   },
   {
     title: "Workout History",
     href: "/workouthistory-landing",
     description:
-      "4 years of a D1 hockey player's workout history, including every workout, every set, every rep, and every weight used.",
+      "4 years of Mateo Dixon's workout history, including his training logs, splits, and phases.",
   },
 ];
 

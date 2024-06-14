@@ -4,8 +4,8 @@ export default function AboutPage() {
   return (
     <main className="flex flex-col min-h-[100vh]">
       <div className="container flex flex-col gap-y-24 w-full items-center mt-8">
-        <article className="prose flex flex-col items-center">
-          <h1>{about.title}</h1>
+        <article className="prose flex flex-col items-center dark:text-white">
+          <h1 className="dark:text-white">{about.title}</h1>
 
           <Image src={about.image} alt={about.title} width={800} height={400} />
 
@@ -24,7 +24,7 @@ export default function AboutPage() {
           <p>{about.line7}</p>
 
           <section>
-            <h2>{about.accomplishments.title}</h2>
+            <h2 className="dark:text-white">{about.accomplishments.title}</h2>
             <ul>
               {about.accomplishments.items.map((item, index) => (
                 <li key={index}>{item}</li>

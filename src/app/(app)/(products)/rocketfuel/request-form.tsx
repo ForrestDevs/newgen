@@ -82,7 +82,7 @@ export function RequestForm() {
   const dialogTrigger = () => {
     setDialogTriggerClicked(true);
     setDialogOpen(true);
-  }
+  };
 
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -96,9 +96,9 @@ export function RequestForm() {
           Request a 1-on-1 Custom Plan
         </DialogTitle>
         <DialogDescription>
-          Recieve a custom 3-month plan, after a 1 hour zoom call with Mateo to
-          discuss your goals and unique requirements.There is an additional $100
-          fee for this service.
+          Recieve a custom 3-month plan, beginning with a 1 hour zoom call with
+          Mateo to discuss your goals and unique requirements. The price of this
+          custom plan and consult is $199.99 (serious inquiries only).
         </DialogDescription>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

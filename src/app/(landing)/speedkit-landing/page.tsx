@@ -25,7 +25,7 @@ import {
   WorkflowIcon,
   ZoomInIcon,
 } from "lucide-react";
-import { faq, whatsIncluded } from "@/config/rocketfuel";
+import { faq, theSience, whatsIncluded } from "@/config/rocketfuel";
 
 export default function SpeedKitLanding() {
   return (
@@ -59,19 +59,6 @@ export default function SpeedKitLanding() {
                 Get Access
               </ShineBorder>
             </Link>
-
-            {/* <Link
-              href="/login"
-              className={cn(
-                buttonVariants({
-                  variant: "outline",
-                  className:
-                    "bg-gradient-to-br from-cyan-400 via-violet-400 to-fuchsia-500",
-                })
-              )}
-            >
-              Get Access
-            </Link> */}
           </div>
         </section>
 
@@ -104,147 +91,33 @@ export default function SpeedKitLanding() {
         <section id="science" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container space-y-12 px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
+              <div className="space-y-8">
                 <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
                   The Science
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  The Science Behind Speed Development
+                  Tapping Into Your Speed Potential
                 </h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Unlock your full athletic potential with our comprehensive
-                  speed development program. Grounded in the latest sports
-                  science, our methods are designed to improve strength,
-                  velocity, power, and elasticity for explosive performance.
+                  Maximize your speed potential by tapping into essential
+                  performance elements, from boosting top velocity and quick
+                  acceleration to optimizing muscle power and tendon efficiency,
+                  all designed to elevate your athletic performance.
                 </p>
               </div>
             </div>
             <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold">Strength</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Develop the foundation of muscular strength to support
-                  explosive movements.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold">Velocity</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Improve your ability to generate high-velocity force
-                  production.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold">Power</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Develop the capacity to express high levels of muscular power.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold">Elasticity</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Enhance the elastic properties of your muscles and tendons.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold">Coordination</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Improve your ability to coordinate complex movements.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold">Agility</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Develop the capacity to change direction and move quickly.
-                </p>
-              </div>
+              {theSience.map((item, i) => (
+                <div className="grid gap-1">
+                  <h3 className="text-lg font-bold">{item.title}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {item.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
-
-        {/* <section id="features" className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6 space-y-12">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gray-900 dark:text-gray-50">
-                  Optimize Your Development
-                </h2>
-                <p className="max-w-[900px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-300">
-                  New Gen Performance harnesses unique insights, application
-                  tools, and cutting-edge software to propel you toward your
-                  full athletic potential.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-50">
-                  Multimedia content
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Our platform offers a diverse range of formats to enrich your
-                  learning experience. Explore through videos, audio clips,
-                  image-rich blog posts, master-student dialogues, personal
-                  stories, external sources and relatable quotes.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-50">
-                  Performance Planner
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Our calendar software helps you apply and monitor the progress
-                  of your development. It&apos;s designed to mix smoothly with
-                  the knowledge and practical tools we offer, enabling you to
-                  align your vision and desires effectively.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-50">
-                  My Intimate Journey
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Gain access to my personal journaling journey that began at 13
-                  years old diving into the questions, self-reflections, and
-                  discoveries I&apos;ve documented about my life and growth.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-50">
-                  Revolutionary Approach
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Our platform enhances every aspect of your performance,
-                  including nutrition, physical capabilities (like speed and
-                  strength), recovery techniques, mental strategies, and
-                  advantageous perspectives, all designed to help you thrive.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-50">
-                  Customized Learning Paths
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Our platform creates personalized learning paths that adapt to
-                  your pace and preferences. With our content, you can choose
-                  how and when you engage with the information, ensuring it fits
-                  seamlessly into your lifestyle.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-gray-50">
-                  Off-season Development Blueprint
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Use our detailed template, refined from nearly a decade of
-                  proven off-season strategies. This resource is designed to
-                  maximize your growth by incorporating lessons from years of
-                  development.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section> */}
 
         <section id="faq">
           <div className="mx-auto max-w-4xl md:px-16 lg:px-20 ">
@@ -273,15 +146,11 @@ export default function SpeedKitLanding() {
         </section>
 
         <section id="cta" className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+          <div className="grid items-center justify-center gap-8 px-4 text-center md:px-6">
             <div className="space-y-3">
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight text-gray-900 dark:text-gray-50">
-                Join the New Gen Performance Community
+                Are you ready to turbocharge your speed?
               </h2>
-              <p className="mx-auto max-w-[600px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-300">
-                Be the first to experience our game-changing platform and join a
-                network of elite athletes and coaches.
-              </p>
             </div>
             <div className="flex items-center justify-center">
               <Link href="/login">

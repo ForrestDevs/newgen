@@ -41,6 +41,43 @@ export const faq = [
   },
 ];
 
+export const theSience = [
+  {
+    title: "Velocity",
+    description: "Boosting your top speed",
+  },
+  {
+    title: "Acceleration",
+    description: "Increasing your quickness off the mark",
+  },
+  {
+    title: "Rate of Force Development",
+    description: "Enhancing how quickly you can apply force",
+  },
+  {
+    title: "Fast Twitch Muscle Fibers",
+    description: "Activating the fibers that power quick, explosive movements",
+  },
+  {
+    title: "Strength",
+    description: "Building the overall power of your muscles",
+  },
+  {
+    title: "Hip End Range Strength",
+    description: "Strengthening your hips to maximize their motion and power",
+  },
+  {
+    title: "Muscle Elasticity",
+    description:
+      "Enhancing your muscles ability to store and release energy quickly, crucial for rapid movements",
+  },
+  {
+    title: "Tendon Stiffness",
+    description:
+      "Optimizing tendon properties to improve force transmission and efficiency",
+  },
+];
+
 export const whatsIncluded = [
   {
     title: "Over 55 strategic exercises",
@@ -878,21 +915,21 @@ export const phases = [
     title: "Phase 2",
     duration: "(6 to 8 weeks)",
     description:
-      "The max strength phase is complete, so in terms of weightlifting, it's time to shift focus to building power. This means decreasing the weight and moving it as quickly as possible—normal movements such as squats, deadlifts, and cleans should be at 50%-70% of your one-rep max. Additionally, we'll introduce acceleration-based sprints, such as uphill, sled, or banded sprints, to add resistance to your speed training.",
+      "In this phase, you'll shift focus to power, emphasizing speed and explosiveness. You'll use the strength gains from Phase 1 to train for generating higher force more quickly. Now, you're ready to increase the volume and level of your exercise variations, pushing your abilities further. ",
     exerciseSplit: [
       {
         title: "Speed",
-        description: "2-3x per week (workouts 1, 2, 3)",
+        description: "2-3 workouts per week (workouts 1, 2, 3)",
         logo: PiGaugeBold,
       },
       {
         title: "Hip Isometrics, Ankle",
-        description: "2-3x per week",
+        description: "2-3 workouts per week",
         logo: TbStretching,
       },
       {
         title: "Strength",
-        description: "2-3x per week",
+        description: "2-3 workouts per week",
         logo: PiBarbellBold,
       },
     ],
