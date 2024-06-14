@@ -15,19 +15,17 @@ import ProButton from "@/app/(app)/(products)/rocketfuel/purchase-button";
 import { dashboardLinks, whatsIncluded } from "@/config/rocketfuel";
 import { useState } from "react";
 import { RequestForm } from "./request-form";
+import { env } from "@/lib/env.mjs";
 
 export function Dynamic() {
   const { data, isLoading } = api.user.userHasCourse.useQuery({
-    courseId: "prr4ngd4e9nggnhzag6a0",
-    // courseId: "kdisyxqg19iam3rd25s6m",
+    courseId: env.NEXT_PUBLIC_ROCKET_FUEL_COURSE_ID,
   });
 
   if (isLoading) {
     console.log("Loading...");
     return <Skeleton />;
   }
-
-  // return <Purchase />;
 
   if (!data?.hasCourse) {
     console.log("User does not have course access");

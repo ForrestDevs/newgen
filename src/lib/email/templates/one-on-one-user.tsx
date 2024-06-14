@@ -45,7 +45,7 @@ export const OneOnOneUserTemplate = (props: OneOnOneUserTemplateProps) => {
               soon with further details and to schedule the session.
               <br />
               <br />
-              If you have any questions or need further assistance, please don't
+              If you have any questions or need further assistance, please don&apos;t
               hesitate to contact us.
               <br />
               <br />

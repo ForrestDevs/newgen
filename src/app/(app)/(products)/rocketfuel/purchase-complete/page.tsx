@@ -54,7 +54,7 @@ export default async function CheckoutReturnPage({
                 Thank you for your purchase!
               </h1>
               <p className="text-gray-500 dark:text-gray-400 text-lg md:text-xl">
-                You've successfully purchased the Rocket Fuel Speed Kit. Get
+                You&apos;ve successfully purchased the Rocket Fuel Speed Kit. Get
                 ready to take your website to new heights!
               </p>
             </div>
