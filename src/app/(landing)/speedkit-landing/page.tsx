@@ -102,7 +102,7 @@ export default function SpeedKitLanding() {
                   Maximize your speed potential by tapping into essential
                   performance elements, from boosting top velocity and quick
                   acceleration to optimizing muscle power and tendon efficiency,
-                  all designed to elevate your athletic performance.
+                  all designed to elevate your on-ice performance.
                 </p>
               </div>
             </div>
