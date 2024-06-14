@@ -881,7 +881,7 @@ export const phases = [
     exampleWeekly: [
       {
         day: "Monday",
-        workout: "Speed",
+        workout: "Speed (workout 1)",
       },
       {
         day: "Tuesday",
@@ -889,7 +889,7 @@ export const phases = [
       },
       {
         day: "Wednesday",
-        workout: "Speed",
+        workout: "Speed (workout 1)",
       },
       {
         day: "Thursday",
@@ -955,11 +955,11 @@ export const phases = [
     exampleWeekly: [
       {
         day: "Monday",
-        workout: "Speed (1)",
+        workout: "Speed (workout 1)",
       },
       {
         day: "Tuesday",
-        workout: "Med Ball Power (2)",
+        workout: "Med Ball Power (workout 2)",
       },
       {
         day: "Wednesday",
@@ -967,7 +967,7 @@ export const phases = [
       },
       {
         day: "Thursday",
-        workout: "Speed (3)",
+        workout: "Speed (workout 3)",
       },
       {
         day: "Friday",

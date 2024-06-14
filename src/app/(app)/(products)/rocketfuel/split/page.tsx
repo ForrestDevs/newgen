@@ -58,8 +58,11 @@ export default function Split() {
                   className="border border-orange-500 bg-gradient-to-br from-orange-100/50 to-orange-200/50"
                 >
                   <CardHeader className="flex items-center justify-center mb-2">
-                    <div className="h-10 w-10 rounded-full bg-orange-500 text-white flex items-center justify-center">
-                      <span className="text-xl font-bold">{wo.title}</span>
+                    <div className="  flex-col flex items-center justify-center">
+                      <p className="text-xl font-bold">Workout</p>
+                      <span className="text-xl font-bold h-10 w-10 rounded-full bg-orange-500 text-white flex items-center justify-center">
+                        {wo.title}
+                      </span>
                     </div>
                   </CardHeader>
                   <CardContent>

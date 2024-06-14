@@ -14,7 +14,7 @@ export default function TrackingProgress() {
               Tracking Methods
             </h1>
             <p className="text-lg text-gray-500 dark:text-gray-400">
-              Choose from various tracking methods to monitor your fitness
+              Utilize these tracking methods to monitor your fitness
               progress.
             </p>
           </section>

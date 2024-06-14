@@ -36,8 +36,6 @@ export default function Science() {
             className="rounded-lg"
           />
         </div>
-
-        <h2>Dynamic (Speed) of Effort:</h2>
         <h3>Training That Matches Your Needs: </h3>
         <p>
           Ever wondered if your training is as fast as you need to be on the ice
@@ -112,10 +110,13 @@ export default function Science() {
           pushing against the ground and utilizing the force it pushes back
           with. This interaction, dictated by Newton&apos;s Third Law of Motion,
           means your ability to push effectively against the ground determines
-          how fast you move. Synergy of Body Mechanics: Your tendons, ligaments,
-          and nervous system collaborate to optimize this force. The better they
-          work together, the more effectively you can move and maintain optimal
-          contact with the ground, crucial for any sport.
+          how fast you move.
+        </p>
+        <p>
+          Synergy of Body Mechanics: Your tendons, ligaments, and nervous system
+          collaborate to optimize this force. The better they work together, the
+          more effectively you can move and maintain optimal contact with the
+          ground, crucial for any sport.
         </p>
         <h2>Rate of Force Development (RFD):</h2>
         <h3>Quick Force Application:</h3>
@@ -123,11 +124,13 @@ export default function Science() {
           RFD is about how swiftly your body can handle and use force. While
           your tendons and ligaments are great at quickly loading and releasing
           force, the real test is whether they can maintain this under the
-          stress of intense strength demands. Building Explosive Power: Focus on
-          enhancing your elastic strength to utilize stored energy rapidly,
-          starting strength to initiate movements powerfully, and acceleration
-          strength to rapidly increase force output at the start of your
-          movements.
+          stress of intense strength demands.
+        </p>
+        <p>
+          Building Explosive Power: Focus on enhancing your elastic strength to
+          utilize stored energy rapidly, starting strength to initiate movements
+          powerfully, and acceleration strength to rapidly increase force output
+          at the start of your movements.
         </p>
         <div className="flex justify-center">
           <Image
@@ -146,8 +149,8 @@ export default function Science() {
           your sport, every session translates into better performance during
           games. Plus, it&apos;s all backed by science and the proven results of
           top athletes. So, when you train with us, you&apos;re not just lifting
-          weights — you&apos;re gearing up to be faster and more competitive in your
-          sport.
+          weights — you&apos;re gearing up to be faster and more competitive in
+          your sport.
         </p>
       </article>
     </ContentLayout>
