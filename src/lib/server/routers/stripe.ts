@@ -110,6 +110,7 @@ async function createCheckoutSession({
         stripePriceId: env.STRIPE_ROCKET_FUEL_PRICE_ID,
         stripeCustomerId: stripeCustomerId,
       },
+      allow_promotion_codes: true,
       customer_update: {
         address: "auto",
         shipping: "auto",

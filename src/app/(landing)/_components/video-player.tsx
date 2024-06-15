@@ -7,8 +7,7 @@ export default function VideoPlayer() {
       <MuxPlayer
         streamType="on-demand"
         playbackId="o6lmUecceQkJiqacrR0202PC100CNasGvV1gZ2uMnOyyng"
-        metadataVideoTitle="Placeholder (optional)"
-        metadataViewerUserId="Placeholder (optional)"
+        metadataVideoTitle="Landing Page Video"
         primaryColor="#FFFFFF"
         secondaryColor="#000000"
         style={{ aspectRatio: 16 / 9 }}

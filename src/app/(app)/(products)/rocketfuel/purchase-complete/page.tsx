@@ -33,9 +33,6 @@ export default async function CheckoutReturnPage({
   }
 
   if (session?.status === "complete") {
-    // toast.success("Payment complete!");
-    // * upgrade the membership or do something to make change to the database to mark this payment complete
-    // * this can be making the user a PRO member or add items ... etc.
     return (
       <ContentLayout title="Purchase Complete">
         <div className="flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 py-12">
@@ -54,8 +51,8 @@ export default async function CheckoutReturnPage({
                 Thank you for your purchase!
               </h1>
               <p className="text-gray-500 dark:text-gray-400 text-lg md:text-xl">
-                You&apos;ve successfully purchased the Rocket Fuel Speed Kit. Get
-                ready to take your website to new heights!
+                You&apos;ve successfully purchased the Rocket Fuel Speed Kit.
+                Get ready to take your speed to new heights!
               </p>
             </div>
             <div className="flex justify-center">

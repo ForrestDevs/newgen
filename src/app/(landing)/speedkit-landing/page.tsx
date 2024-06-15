@@ -70,6 +70,7 @@ export default function SpeedKitLanding() {
             metadata={{
               video_title: "speedkit-intro",
             }}
+            thumbnailTime={1}
             style={{ aspectRatio: 16 / 9 }}
           />
         </section>
