@@ -26,6 +26,7 @@ import {
   ZoomInIcon,
 } from "lucide-react";
 import { faq, theSience, whatsIncluded } from "@/config/rocketfuel";
+import MuxPlayer from "@mux/mux-player-react";
 
 export default function SpeedKitLanding() {
   return (
@@ -62,6 +63,17 @@ export default function SpeedKitLanding() {
           </div>
         </section>
 
+        <section id="video">
+          <MuxPlayer
+            streamType="on-demand"
+            playbackId={"8sySsyTDFf5MPGkHXO02Zp83xMnBgS9juWPNvB02sHIwo"}
+            metadata={{
+              video_title: "speedkit-intro",
+            }}
+            style={{ aspectRatio: 16 / 9 }}
+          />
+        </section>
+
         <div className="w-full max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20 lg:py-24">
           <div className="flex justify-center">
             <div className="flex flex-col items-center space-y-6">
@@ -70,8 +82,7 @@ export default function SpeedKitLanding() {
                   What&apos;s Included
                 </h1>
                 <p className="mt-4 text-gray-500 dark:text-gray-400 md:text-xl">
-                  Unlock your full speed potential with our specialized
-                  program.
+                  Unlock your full speed potential with our specialized program.
                 </p>
               </div>
               <div className="flex flex-col justify-center gap-4">
