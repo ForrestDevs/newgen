@@ -260,9 +260,8 @@ function Dashboard() {
             Request a 1-on-1 Custom Plan
           </h2>
           <p className="text-gray-500 dark:text-gray-400">
-            Work directly with me over Zoom to design a custom speed program
-            tailored to your needs. Get a detailed, personalized 3-month plan
-            that addresses your goals and unique requirements.
+            Recieve a custom 3-month plan, beginning with a 1 hour zoom call
+            with Mateo to discuss your goals and unique requirements.
           </p>
           <RequestForm />
         </div>

@@ -18,8 +18,8 @@ export const metadata = {
 };
 
 export default async function LoginPage() {
-  const { user } = await validateRequest();
-  if (user) redirect(Paths.Dashboard);
+  const { session } = await validateRequest();
+  if (session) redirect(Paths.Dashboard);
 
   return (
     <Card className="w-full max-w-md">
