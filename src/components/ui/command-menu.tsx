@@ -12,7 +12,7 @@ import {
 } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 
-// import { docsConfig } from "@/config/docs";
+import { docsConfig } from "@/config/docs";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
