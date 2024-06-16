@@ -144,7 +144,7 @@ export function CreateProfileForm() {
                     captionLayout="dropdown-buttons"
                     fromYear={1970}
                     toYear={new Date(
-                      new Date().setFullYear(new Date().getFullYear() - 18)
+                      new Date().setFullYear(new Date().getFullYear() - 3)
                     ).getFullYear()}
                     showOutsideDays={false}
                     selected={new Date(field.value)}
