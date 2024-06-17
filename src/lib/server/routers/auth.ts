@@ -108,6 +108,19 @@ async function login({ input }: { input: LoginInput }) {
   const existingUser = await db.query.users.findFirst({
     where: (table, { eq }) => eq(table.email, email),
   });
+
+  if (existingUser && !existingUser.emailVerified) {
+    const verificationCode = await generateEmailVerificationCode(
+      existingUser.id,
+      email
+    );
+
+    await sendMail(email, EmailTemplate.EmailVerification, {
+      code: verificationCode,
+    });
+    return { redirect: Paths.VerifyEmail };
+  }
+
   if (!existingUser || !existingUser.hashedPassword) {
     throw new TRPCError({
       code: "BAD_REQUEST",
@@ -474,7 +487,7 @@ async function generateEmailVerificationCode(
     userId,
     email,
     code,
-    expiresAt: createDate(new TimeSpan(10, "m")), // 10 minutes
+    expiresAt: createDate(new TimeSpan(30, "m")), // 10 minutes
   });
   return code;
 }

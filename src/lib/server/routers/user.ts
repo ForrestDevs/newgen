@@ -35,7 +35,9 @@ import {
   userProductsQuerySchema,
   userProfileQuerySchema,
   waitlistSchema,
+  UserProfileQueryOutput,
 } from "@/lib/validations/user";
+import { authResponseSchema } from "@/lib/validations/auth";
 import { EmailTemplate, sendMail } from "@/lib/email";
 
 export const userRouter = createTRPCRouter({
@@ -147,12 +149,20 @@ async function requestOneonOne({
 
 async function getUserProfile({ ctx }: { ctx: ProtectedTRPCContext }) {
   const user = ctx.user;
-
   if (!user) {
-    throw new TRPCError({
-      message: "User not found",
-      code: "NOT_FOUND",
-    });
+    return {
+      success: false,
+      redirect: "/login",
+    };
+  }
+  console.log("Getting user profile for user: ", user.id);
+
+  if (!user.emailVerified) {
+    console.log("User email not verified");
+    return {
+      success: false,
+      redirect: "/verify-email",
+    };
   }
 
   try {
@@ -168,25 +178,20 @@ async function getUserProfile({ ctx }: { ctx: ProtectedTRPCContext }) {
       .where(eq(userProfiles.userId, ctx.user.id))
       .limit(1);
 
-    if (!userProfile.length) {
-      throw new TRPCError({
-        message: "User profile not found",
-        code: "NOT_FOUND",
-      });
-    }
-
     return {
-      firstName: userProfile[0].firstName ?? "",
-      lastName: userProfile[0].lastName ?? "",
-      birthday: userProfile[0].birthday?.toLocaleDateString() ?? "",
-      hockeyLevel: userProfile[0].hockeyLevel ?? "",
-      location: userProfile[0].location ?? "",
+      success: true,
+      redirect: "",
+      data: {
+        firstname: userProfile[0].firstName ?? "",
+        lastname: userProfile[0].lastName ?? "",
+        birthday: userProfile[0].birthday?.toLocaleDateString() ?? "",
+        hockeylevel: userProfile[0].hockeyLevel ?? "",
+        location: userProfile[0].location ?? "",
+      },
     };
   } catch (error) {
-    throw new TRPCError({
-      message: "Failed to get user profile",
-      code: "INTERNAL_SERVER_ERROR",
-    });
+    console.error("Failed to get user profile", error);
+    return { success: false, redirect: "/create-profile" };
   }
 }
 

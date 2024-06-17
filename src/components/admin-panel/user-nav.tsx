@@ -32,7 +32,14 @@ interface UserNavProps {
 
 export function UserNav({ user, session }: UserNavProps) {
   const router = useRouter();
-  const { data: userProfile } = api.user.getUserProfile.useQuery();
+  const userProfile = api.user.getUserProfile.useQuery();
+
+  if (!userProfile.data?.success) {
+    router.push(userProfile.data?.redirect ?? "/login");
+  }
+
+  const fname = userProfile.data?.data?.firstname ?? "";
+  const lname = userProfile.data?.data?.lastname ?? "";
 
   const logoutMutation = api.auth.logout.useMutation({
     onMutate: () => {
@@ -64,8 +71,8 @@ export function UserNav({ user, session }: UserNavProps) {
                 <Avatar className="h-8 w-8">
                   {/* <AvatarImage src="#" alt="Avatar" /> */}
                   <AvatarFallback className="bg-transparent">
-                    {userProfile?.firstName.charAt(0)}
-                    {userProfile?.lastName.charAt(0)}
+                    {fname.charAt(0)}
+                    {lname.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
               </Button>
@@ -79,7 +86,7 @@ export function UserNav({ user, session }: UserNavProps) {
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">
-              {userProfile?.firstName} {userProfile?.lastName}
+              {fname} {lname}
             </p>
             <p className="text-xs leading-none text-muted-foreground">
               {user.email}

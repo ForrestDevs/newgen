@@ -6,12 +6,20 @@ export const successSchema = z.object({
 });
 
 export const userProfileQuerySchema = z.object({
-  firstName: z.string(),
-  lastName: z.string(),
-  birthday: z.string(),
-  hockeyLevel: z.string(),
-  location: z.string(),
+  success: z.boolean(),
+  redirect: z.string(),
+  data: z
+    .object({
+      firstname: z.string(),
+      lastname: z.string(),
+      birthday: z.string(),
+      hockeylevel: z.string(),
+      location: z.string(),
+    })
+    .optional(),
 });
+
+export type UserProfileQueryOutput = z.infer<typeof userProfileQuerySchema>;
 
 export const waitlistSchema = z.object({
   email: z.string().email(),

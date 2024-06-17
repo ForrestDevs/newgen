@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
+
 import { SignupForm } from "./signup-form";
-import { validateRequest } from "@/lib/auth/validate-request";
 import { APP_NAME, Paths } from "@/config/constants";
 import {
   Card,
@@ -18,10 +17,6 @@ export const metadata = {
 };
 
 export default async function SignupPage() {
-  const { user } = await validateRequest();
-
-  if (user) redirect(Paths.Dashboard);
-
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">

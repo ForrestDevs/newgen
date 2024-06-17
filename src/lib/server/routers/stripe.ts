@@ -22,11 +22,7 @@ export const stripeRouter = createTRPCRouter({
     .mutation((ctx) => createCheckoutSession(ctx)),
 });
 
-async function createCheckoutSession({
-  ctx
-}: {
-  ctx: ProtectedTRPCContext;
-}) {
+async function createCheckoutSession({ ctx }: { ctx: ProtectedTRPCContext }) {
   const user = ctx.user;
 
   if (!user) {
@@ -37,6 +33,16 @@ async function createCheckoutSession({
   }
 
   const userProfile = await api.user.getUserProfile.query();
+
+  if (!userProfile.success) {
+    return {
+      success: false,
+      clientSecret: "",
+    };
+  }
+
+  const fname = userProfile.data?.firstname ?? "";
+  const lname = userProfile.data?.lastname ?? "";
 
   console.log("Creating checkout session");
 
@@ -95,7 +101,7 @@ async function createCheckoutSession({
     if (!existingStripeCustomer) {
       const customer = await stripe.customers.create({
         email: user.email,
-        name: userProfile.firstName + " " + userProfile.lastName,
+        name: fname + " " + lname,
       });
       console.log("New stripe Customer", customer);
       stripeCustomerId = customer.id;

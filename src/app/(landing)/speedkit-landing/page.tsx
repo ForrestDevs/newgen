@@ -60,6 +60,9 @@ export default function SpeedKitLanding() {
                 Get Access
               </ShineBorder>
             </Link>
+            <span className="text-xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-orange-500 to-red-700">
+              For only 99.99$
+            </span>
           </div>
         </section>
 

@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/card";
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import { api } from "@/lib/trpc/server";
+import { z } from "zod";
+import { redirect } from "next/navigation";
 
 const sections = [
   {
@@ -60,19 +62,22 @@ const sections = [
 ];
 
 export default async function Home() {
-  const userProfile = api.user.getUserProfile.query();
+  const userProfile = await api.user.getUserProfile.query();
 
-  if (!userProfile) {
-    return null;
+  if (!userProfile.success) {
+    redirect(userProfile.redirect);
   }
 
+  const fname = userProfile.data?.firstname ?? "";
+
+  
   return (
     <ContentLayout title="Dashboard">
       <div className="flex flex-col gap-8 p-4 md:p-8">
         <section id="header">
           <div className="flex flex-col items-center gap-4 text-center">
             <h1 className="text-3xl font-bold md:text-4xl">
-              Welcome back, {(await userProfile).firstName}!
+              Welcome back, {fname}!
             </h1>
             <p className="text-gray-500 dark:text-gray-400 md:text-lg">
               Let&apos;s dive into your dashboard and see what&apos;s new.
@@ -92,7 +97,10 @@ export default async function Home() {
                   href={card.href}
                   className="hover:scale-[1.03] transition-all"
                 >
-                  <Card key={i} className="flex flex-col justify-center items-center min-h-60">
+                  <Card
+                    key={i}
+                    className="flex flex-col justify-center items-center min-h-60"
+                  >
                     <CardHeader>
                       <CardTitle>{card.title}</CardTitle>
                     </CardHeader>
