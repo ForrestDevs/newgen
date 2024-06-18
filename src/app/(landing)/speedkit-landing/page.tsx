@@ -67,15 +67,9 @@ export default function SpeedKitLanding() {
         </section>
 
         <section id="video">
-          <MuxPlayer
-            streamType="on-demand"
-            playbackId={"8sySsyTDFf5MPGkHXO02Zp83xMnBgS9juWPNvB02sHIwo"}
-            metadata={{
-              video_title: "speedkit-intro",
-            }}
-            thumbnailTime={1}
-            style={{ aspectRatio: 16 / 9 }}
-          />
+          <div className="flex justify-center">
+            <iframe className="w-full max-w-4xl" allowFullScreen src="https://www.loom.com/embed/7fe1f9b9507a4c32899a529973926360?sid=ebb330c1-1be3-451f-80f3-8bd19ec5683d" height="500"></iframe>
+          </div>
         </section>
 
         <div className="w-full max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20 lg:py-24">

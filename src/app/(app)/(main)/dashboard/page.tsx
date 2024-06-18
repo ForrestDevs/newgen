@@ -64,13 +64,13 @@ const sections = [
 export default async function Home() {
   const userProfile = await api.user.getUserProfile.query();
 
-  if (!userProfile.success) {
+  if (userProfile.success == false) {
     redirect(userProfile.redirect);
   }
 
   const fname = userProfile.data?.firstname ?? "";
 
-  
+
   return (
     <ContentLayout title="Dashboard">
       <div className="flex flex-col gap-8 p-4 md:p-8">
