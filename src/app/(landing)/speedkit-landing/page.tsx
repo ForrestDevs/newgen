@@ -60,15 +60,17 @@ export default function SpeedKitLanding() {
                 Get Access
               </ShineBorder>
             </Link>
-            <span className="text-xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-orange-500 to-red-700">
-              For only 99.99$
-            </span>
           </div>
         </section>
 
         <section id="video">
           <div className="flex justify-center">
-            <iframe className="w-full max-w-4xl" allowFullScreen src="https://www.loom.com/embed/7fe1f9b9507a4c32899a529973926360?sid=ebb330c1-1be3-451f-80f3-8bd19ec5683d" height="500"></iframe>
+            <iframe
+              className="w-full max-w-4xl"
+              allowFullScreen
+              src="https://www.loom.com/embed/7fe1f9b9507a4c32899a529973926360?sid=ebb330c1-1be3-451f-80f3-8bd19ec5683d"
+              height="500"
+            ></iframe>
           </div>
         </section>
 
@@ -93,6 +95,9 @@ export default function SpeedKitLanding() {
                   </div>
                 ))}
               </div>
+              <span className="text-xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-amber-300 via-orange-500 to-red-700">
+                For only 99.99$
+              </span>
             </div>
           </div>
         </div>
