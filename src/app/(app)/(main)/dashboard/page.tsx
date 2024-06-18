@@ -63,9 +63,10 @@ const sections = [
 
 export default async function Home() {
   const userProfile = await api.user.getUserProfile.query();
-
+  console.log(userProfile);
   if (userProfile.success == false) {
-    redirect(userProfile.redirect);
+    console.log("Redirecting to login");
+    // redirect(userProfile.redirect);
   }
 
   const fname = userProfile.data?.firstname ?? "";

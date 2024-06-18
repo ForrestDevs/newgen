@@ -34,7 +34,8 @@ export function UserNav({ user, session }: UserNavProps) {
   const router = useRouter();
   const userProfile = api.user.getUserProfile.useQuery();
 
-  if (!userProfile.data?.success) {
+  if (userProfile.data?.success == false) {
+    console.error("User not found");
     router.push(userProfile.data?.redirect ?? "/login");
   }
 
