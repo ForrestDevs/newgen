@@ -2,15 +2,13 @@ import { db } from "@/lib/db";
 import { generateId } from "lucia";
 import { and, eq } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
+import { products, courses, courseAccess } from "@/lib/db/schema/product";
 import {
-  products,
   userProfiles,
   waitlist,
   userPurchases,
-  courses,
-  courseUsers,
   oneOnOneRequests,
-} from "@/lib/db/schema";
+} from "@/lib/db/schema/user";
 import {
   protectedProcedure,
   createTRPCRouter,
@@ -291,7 +289,7 @@ async function grantCourseAccess({
   const courseUserId = generateId(21);
 
   try {
-    await ctx.db.insert(courseUsers).values({
+    await ctx.db.insert(courseAccess).values({
       id: courseUserId,
       courseId: input.courseId,
       userId: ctx.user.id,
@@ -319,11 +317,11 @@ async function revokeCourseAccess({
   await db.transaction(async (tx) => {
     try {
       await tx
-        .delete(courseUsers)
+        .delete(courseAccess)
         .where(
           and(
-            eq(courseUsers.courseId, input.courseId),
-            eq(courseUsers.userId, ctx.user.id)
+            eq(courseAccess.courseId, input.courseId),
+            eq(courseAccess.userId, ctx.user.id)
           )
         );
     } catch (error) {
@@ -358,8 +356,8 @@ async function getUserCourses({ ctx }: { ctx: ProtectedTRPCContext }) {
         description: courses.description,
       })
       .from(courses)
-      .leftJoin(courseUsers, eq(courses.id, courseUsers.courseId))
-      .where(eq(courseUsers.userId, ctx.user.id));
+      .leftJoin(courseAccess, eq(courses.id, courseAccess.courseId))
+      .where(eq(courseAccess.userId, ctx.user.id));
 
     if (!courseList.length) {
       throw new TRPCError({
@@ -443,11 +441,11 @@ async function userHasCourse({
   try {
     const course = await db
       .select()
-      .from(courseUsers)
+      .from(courseAccess)
       .where(
         and(
-          eq(courseUsers.userId, ctx.user.id),
-          eq(courseUsers.courseId, input.courseId)
+          eq(courseAccess.userId, ctx.user.id),
+          eq(courseAccess.courseId, input.courseId)
         )
       );
 
