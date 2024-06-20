@@ -17,6 +17,7 @@ export const env = createEnv({
         (str) => !str.includes("YOUR_DATABASE_URL_HERE"),
         "You forgot to change the default URL"
       ),
+    DATABASE_PREFIX: z.string().min(1),
     SMTP_HOST: z.string().trim().min(1),
     SMTP_PORT: z.number().int().min(1),
     SMTP_USER: z.string().trim().min(1),
@@ -47,6 +48,7 @@ export const env = createEnv({
   runtimeEnv: {
     // Server-side env vars
     DATABASE_URL: process.env.DATABASE_URL,
+    DATABASE_PREFIX: process.env.DATABASE_PREFIX,
     NODE_ENV: process.env.NODE_ENV,
     SMTP_HOST: process.env.SMTP_HOST,
     SMTP_PORT: parseInt(process.env.SMTP_PORT ?? ""),

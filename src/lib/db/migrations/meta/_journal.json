@@ -15,6 +15,20 @@
       "when": 1718306918736,
       "tag": "0001_grey_imperial_guard",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1718904504292,
+      "tag": "0002_sad_overlord",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1718904633813,
+      "tag": "0003_demonic_franklin_storm",
+      "breakpoints": true
     }
   ]
 }

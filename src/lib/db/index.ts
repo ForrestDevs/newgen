@@ -1,7 +1,18 @@
 import { env } from "@/lib/env.mjs";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import * as schema from "./schema";
+import { pgTableCreator } from "drizzle-orm/pg-core";
+import * as authSchema from "./schema/auth";
+import * as userSchema from "./schema/user";
+import * as productSchema from "./schema/product";
+import * as offseasonSchema from "./schema/offseason";
+
+const schema = {
+  ...authSchema,
+  ...userSchema,
+  ...productSchema,
+  ...offseasonSchema,
+};
 
 let connection: postgres.Sql;
 
