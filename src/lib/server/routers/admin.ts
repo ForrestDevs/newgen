@@ -17,7 +17,7 @@ import {
   type DeleteCourseInput,
 } from "@/lib/validations/admin";
 import { successSchema } from "@/lib/validations/user";
-import { products, courses } from "@/lib/db/schema";
+import { products, courses } from "@/lib/db/schema/product";
 import { eq } from "drizzle-orm";
 import { TRPCError } from "@trpc/server";
 

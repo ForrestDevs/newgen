@@ -11,7 +11,8 @@ import {
   protectedProcedure,
   ProtectedTRPCContext,
 } from "@/lib/server/trpc";
-import { courses, products, userPurchases } from "@/lib/db/schema";
+import { courses, products } from "@/lib/db/schema/product";
+import { userPurchases } from "@/lib/db/schema/user";
 import { eq } from "drizzle-orm";
 import { api } from "@/lib/trpc/server";
 

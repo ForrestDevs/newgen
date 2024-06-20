@@ -4,11 +4,11 @@ import { Lucia, TimeSpan } from "lucia";
 import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle";
 import {
   users,
-  sessions,
   type User as DbUser,
   type UserProfile,
   type UserSurveyResponse,
-} from "@/lib/db/schema";
+} from "@/lib/db/schema/user";
+import { sessions } from "@/lib/db/schema/auth";
 
 const IS_DEV = env.NODE_ENV === "development" ? "DEV" : "PROD";
 

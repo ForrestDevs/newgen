@@ -34,12 +34,10 @@ import {
   introSurveySchema,
 } from "@/lib/validations/auth";
 import {
-  users,
   emailVerificationCodes,
   passwordResetTokens,
-  userProfiles,
-  userSurveyResponses,
-} from "@/lib/db/schema";
+} from "@/lib/db/schema/auth";
+import { users, userProfiles, userSurveyResponses } from "@/lib/db/schema/user";
 
 export const authRouter = createTRPCRouter({
   login: publicProcedure

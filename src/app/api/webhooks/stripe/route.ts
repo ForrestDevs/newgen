@@ -5,7 +5,8 @@ import { generateId } from "lucia";
 import { env } from "@/lib/env.mjs";
 import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
-import { courseUsers, userPurchases } from "@/lib/db/schema";
+import { userPurchases } from "@/lib/db/schema/user"
+import { courseAccess } from "@/lib/db/schema/product";
 
 const metadataSchema = z.object({
   userId: z.string(),
@@ -91,7 +92,7 @@ export async function POST(req: Request) {
 
         const courseUserId = generateId(21);
 
-        const grantAccess = await db.insert(courseUsers).values({
+        const grantAccess = await db.insert(courseAccess).values({
           id: courseUserId,
           courseId: courseId,
           userId: userId,
