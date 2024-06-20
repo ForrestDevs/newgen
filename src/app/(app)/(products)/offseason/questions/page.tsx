@@ -35,7 +35,7 @@ function Component() {
               dedicated time each day to write your reflections. Be honest and
               open with yourself, as this is a private space for your personal
               growth. Consider reflecting on your accomplishments, challenges,
-              lessons learned, and areas you'd like to focus on moving forward.
+              lessons learned, and areas you&apos;d like to focus on moving forward.
             </p>
           </div>
         </div>
@@ -102,7 +102,7 @@ function Component() {
               </Link>
             </div>
             <p className="text-sm text-muted-foreground line-clamp-2">
-              I'm grateful for the support of my family and friends. They have
+              I&apos;m grateful for the support of my family and friends. They have
               been there for me through thick and thin, and...
             </p>
           </div>

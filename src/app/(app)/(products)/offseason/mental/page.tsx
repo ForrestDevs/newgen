@@ -96,7 +96,7 @@ function Component() {
                 </p>
               </div>
               <div className="rounded-md border bg-background p-4 shadow-sm">
-                <h4 className="text-lg font-semibold">Another User's Work</h4>
+                <h4 className="text-lg font-semibold">Another User&apos;s Work</h4>
                 <p className="mt-2 text-muted-foreground">
                   Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui.
                 </p>
